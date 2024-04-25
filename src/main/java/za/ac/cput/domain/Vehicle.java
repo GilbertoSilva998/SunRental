@@ -2,9 +2,9 @@ package za.ac.cput.domain;
 
 import java.util.Objects;
 
-public class Car {
+public class Vehicle {
 
-    private String carID;
+    private String vehicleID;
     private String make;
     private String model;
     private String color;
@@ -14,10 +14,10 @@ public class Car {
     private String dailyRentalRate;
 
     //Constructor
-    private Car() {}
+    private Vehicle() {}
 
-    public Car(Builder builder) {
-        this.carID = builder.carID;
+    public Vehicle(Builder builder) {
+        this.vehicleID = builder.vehicleID;
         this.make = builder.make;
         this.model = builder.model;
         this.color = builder.color;
@@ -28,8 +28,8 @@ public class Car {
     }
 
     //Getters
-    public String getCarID() {
-        return carID;
+    public String getVehicleID() {
+        return vehicleID;
     }
 
     public String getMake() {
@@ -66,21 +66,21 @@ public class Car {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return Objects.equals(carID, car.carID) && Objects.equals(make, car.make) && Objects.equals(model, car.model) && Objects.equals(color, car.color) && Objects.equals(licensePlate, car.licensePlate) && Objects.equals(currentMileage, car.currentMileage) && Objects.equals(rentalStatus, car.rentalStatus) && Objects.equals(dailyRentalRate, car.dailyRentalRate);
+        Vehicle vehicle = (Vehicle) o;
+        return Objects.equals(vehicleID, vehicle.vehicleID) && Objects.equals(make, vehicle.make) && Objects.equals(model, vehicle.model) && Objects.equals(color, vehicle.color) && Objects.equals(licensePlate, vehicle.licensePlate) && Objects.equals(currentMileage, vehicle.currentMileage) && Objects.equals(rentalStatus, vehicle.rentalStatus) && Objects.equals(dailyRentalRate, vehicle.dailyRentalRate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(carID, make, model, color, licensePlate, currentMileage, rentalStatus, dailyRentalRate);
+        return Objects.hash(vehicleID, make, model, color, licensePlate, currentMileage, rentalStatus, dailyRentalRate);
     }
 
     //ToString
 
     @Override
     public String toString() {
-        return "Car{" +
-                "carID='" + carID + '\'' +
+        return "Vehicle{" +
+                "vehicleID='" + vehicleID + '\'' +
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +
                 ", color='" + color + '\'' +
@@ -93,7 +93,7 @@ public class Car {
 
     public static class Builder {
 
-        private String carID;
+        private String vehicleID;
         private String make;
         private String model;
         private String color;
@@ -102,8 +102,8 @@ public class Car {
         private String rentalStatus;
         private String dailyRentalRate;
 
-        public Builder setCarID(String carID) {
-            this.carID = carID;
+        public Builder setCarID(String vehicleID) {
+            this.vehicleID = vehicleID;
             return this;
         }
 
@@ -142,20 +142,20 @@ public class Car {
             return this;
         }
 
-        public Builder copy(Car car) {
-            this.carID = car.carID;
-            this.make = car.make;
-            this.model = car.model;
-            this.color = car.color;
-            this.licensePlate = car.licensePlate;
-            this.currentMileage = car.currentMileage;
-            this.rentalStatus = car.rentalStatus;
-            this.dailyRentalRate = car.dailyRentalRate;
+        public Builder copy(Vehicle vehicle) {
+            this.vehicleID = vehicle.vehicleID;
+            this.make = vehicle.make;
+            this.model = vehicle.model;
+            this.color = vehicle.color;
+            this.licensePlate = vehicle.licensePlate;
+            this.currentMileage = vehicle.currentMileage;
+            this.rentalStatus = vehicle.rentalStatus;
+            this.dailyRentalRate = vehicle.dailyRentalRate;
             return this;
         }
 
-        public Car build(){
-            return new Car(this);
+        public Vehicle build(){
+            return new Vehicle(this);
         }
     }
 }

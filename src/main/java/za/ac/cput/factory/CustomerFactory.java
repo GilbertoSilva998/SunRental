@@ -1,6 +1,5 @@
 package za.ac.cput.factory;
 
-import za.ac.cput.domain.Car;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.util.Helper;
 

@@ -4,25 +4,25 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import za.ac.cput.domain.Car;
-import za.ac.cput.factory.CarFactory;
+import za.ac.cput.domain.Vehicle;
+import za.ac.cput.factory.VehicleFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.OrderAnnotation.class)
-class CarRepositoryTest {
+class VehicleRepositoryTest {
 
-    private static final ICarRepository repository= CarRepository.getRepository();
+    private static final IVehicleRepository repository= VehicleRepository.getRepository();
 
-    private static final Car car = CarFactory.buildCar("Toyota", "Yaris", "Black",
+    private static final Vehicle VEHICLE = VehicleFactory.buildCar("Toyota", "Yaris", "Black",
                                             "CA2323", "155km","Available", "R800");
 
 
     @Test
     @Order(1)
     void create() {
-        assert car != null;
-        Car created = repository.create(car);
+        assert VEHICLE != null;
+        Vehicle created = repository.create(VEHICLE);
         assertNotNull(created);
 
         System.out.println(created);
@@ -31,8 +31,8 @@ class CarRepositoryTest {
     @Test
     @Order(2)
     void read() {
-        assert car != null;
-        Car read = repository.read(car.getCarID());
+        assert VEHICLE != null;
+        Vehicle read = repository.read(VEHICLE.getVehicleID());
         assertNotNull(read);
         System.out.println(read);
     }
@@ -40,9 +40,9 @@ class CarRepositoryTest {
     @Test
     @Order(3)
     void update() {
-        assert car != null;
-        Car newCar = new Car.Builder().copy(car).setMake("Volvo").build();
-        Car updated = repository.update(newCar);
+        assert VEHICLE != null;
+        Vehicle newVehicle = new Vehicle.Builder().copy(VEHICLE).setMake("Volvo").build();
+        Vehicle updated = repository.update(newVehicle);
         assertNotNull(updated);
 
         System.out.println(updated);
@@ -51,8 +51,8 @@ class CarRepositoryTest {
     @Test
     @Order(5)
     void delete() {
-        assert car != null;
-        assertTrue(repository.delete(car.getCarID()));
+        assert VEHICLE != null;
+        assertTrue(repository.delete(VEHICLE.getVehicleID()));
         System.out.println("Car Deleted");
     }
 

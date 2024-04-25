@@ -1,6 +1,5 @@
 package za.ac.cput.repository;
 
-import za.ac.cput.domain.Car;
 import za.ac.cput.domain.Reservation;
 
 import java.util.List;
