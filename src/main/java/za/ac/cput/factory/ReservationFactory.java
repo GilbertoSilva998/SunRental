@@ -7,20 +7,14 @@ import java.time.LocalDateTime;
 
 public class ReservationFactory {
     public static Reservation buildReservation(String reservationID, String customerID, String carModel,
-                                                LocalDateTime pickupDateTime, LocalDateTime returnDateTime) {
+                                               LocalDateTime pickupDateTime, LocalDateTime returnDateTime) {
         // Validate input parameters
-        if ( Helper.isNullorEmpty(reservationID) || Helper.isNullorEmpty(customerID)
-                || Helper.isNullorEmpty(carModel) ) {
-
-            return null;
-            }
-
-        if (pickupDateTime == null || returnDateTime == null || pickupDateTime.isAfter(returnDateTime)) {
-
+        if (Helper.isNullorEmpty(reservationID) || Helper.isNullorEmpty(customerID) || Helper.isNullorEmpty(carModel)
+                || pickupDateTime == null || returnDateTime == null || pickupDateTime.isAfter(returnDateTime)) {
             return null;
         }
 
-          return new Reservation.Builder()
+        return new Reservation.Builder()
                 .setReservationID(reservationID)
                 .setCustomerID(customerID)
                 .setCarModel(carModel)

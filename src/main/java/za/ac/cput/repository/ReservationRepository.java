@@ -1,54 +1,71 @@
 package za.ac.cput.repository;
 
-import org.jetbrains.annotations.NotNull;
 import za.ac.cput.domain.Reservation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class ReservationRepository implements Repository<Reservation> {
-    private List<Reservation> reservations;
+public class ReservationRepository implements IReservationRepository {
 
-    public ReservationRepository() {
-        this.reservations = new ArrayList<>();
+    private static IReservationRepository repository = null;
+
+    private List<Reservation> reservationList = new ArrayList<>();
+
+    private ReservationRepository() {
+        reservationList = new ArrayList<>();
+    }
+
+    public static IReservationRepository getRepository() {
+        if (repository == null) {
+            repository = new ReservationRepository();
+        }
+        return repository;
     }
 
     @Override
-    public Optional<Reservation> read(String id) {
-        for (Reservation reservation : reservations) {
-            if (reservation.getReservationID().equals(id)) {
-                return Optional.of(reservation);
+    public Reservation create(Reservation reservation) {
+        boolean success = reservationList.add(reservation);
+        if (success) {
+            return reservation;
+        }
+        return null;
+    }
+
+    @Override
+    public Reservation read(String id) {
+        for (Reservation r : reservationList) {
+            if (r.getReservationID().equals(id)) {
+                return r;
             }
         }
-        return Optional.empty();
+        return null;
     }
 
     @Override
-    public Optional<Reservation> update(@NotNull Reservation reservation) {
+    public Reservation update(Reservation reservation) {
         String id = reservation.getReservationID();
-        Optional<Reservation> oldReservation = read(id);
-        if (oldReservation.isPresent()) {
-            boolean success = delete(id);
-            if (success) {
-                reservations.add(reservation);
-                return Optional.of(reservation);
-            }
+        Reservation reservationOld = read(id);
+        if (reservationOld == null)
+            return null;
+
+        boolean success = delete(id);
+        if (success) {
+            if (reservationList.add(reservation))
+                return reservation;
         }
-        return Optional.empty();
+        return null;
     }
 
     @Override
     public boolean delete(String id) {
-        Optional<Reservation> reservationToDelete = read(id);
-        if (reservationToDelete.isPresent()) {
-            return reservations.remove(reservationToDelete.get());
-        }
-        return false;
+        Reservation reservationToDelete = read(id);
+        if (reservationToDelete == null)
+            return false;
+        return (reservationList.remove(reservationToDelete));
     }
 
     @Override
     public List<Reservation> getAll() {
-        return reservations;
+        return reservationList;
     }
 }

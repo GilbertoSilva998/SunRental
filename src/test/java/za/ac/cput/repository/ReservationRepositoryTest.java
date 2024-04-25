@@ -1,104 +1,70 @@
 package za.ac.cput.repository;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.domain.Reservation;
+import za.ac.cput.factory.ReservationFactory;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
+@TestMethodOrder(MethodOrderer.MethodName.OrderAnnotation.class)
 class ReservationRepositoryTest {
-    private ReservationRepository repository;
 
-    @BeforeEach
-    public void setUp() {
-        repository = new ReservationRepository();
+    private static final IReservationRepository repository = ReservationRepository.getRepository();
+
+    private static final Reservation reservation = ReservationFactory.buildReservation(
+            "R001", "C001", "Toyota Yaris",
+            LocalDateTime.now().plusDays(1), LocalDateTime.now().plusDays(3)
+    );
+
+    @Test
+    @Order(1)
+    void create() {
+        assert reservation != null;
+        Reservation created = repository.create(reservation);
+        assertNotNull(created);
+
+        System.out.println(created);
     }
 
     @Test
-    public void testAddReservation() {
-        Reservation reservation = new Reservation.Builder()
-                .setReservationID("1")
-                .setCustomerID("101")
-                .setCarModel("Toyota Corolla")
-                .setPickupDateTime(LocalDateTime.of(2024, 3, 25, 10, 0))
-                .setReturnDateTime(LocalDateTime.of(2024, 3, 27, 15, 0))
-                .build();
-
-        repository.addReservation(reservation);
-
-        List<Reservation> allReservations = repository.getAllReservations();
-        assertEquals(1, allReservations.size());
-        assertTrue(allReservations.contains(reservation));
+    @Order(2)
+    void read() {
+        assert reservation != null;
+        Reservation read = repository.read(reservation.getReservationID());
+        assertNotNull(read);
+        System.out.println(read);
     }
 
     @Test
-    public void testRemoveReservation() {
-        Reservation reservation1 = new Reservation.Builder()
-                .setReservationID("1")
-                .setCustomerID("101")
-                .setCarModel("Toyota Corolla")
-                .setPickupDateTime(LocalDateTime.of(2024, 3, 25, 10, 0))
-                .setReturnDateTime(LocalDateTime.of(2024, 3, 27, 15, 0))
+    @Order(3)
+    void update() {
+        assert reservation != null;
+        Reservation newReservation = new Reservation.Builder()
+                .copy(reservation)
+                .setCarModel("Volvo XC90")
                 .build();
+        Reservation updated = repository.update(newReservation);
+        assertNotNull(updated);
 
-        Reservation reservation2 = new Reservation.Builder()
-                .setReservationID("2")
-                .setCustomerID("102")
-                .setCarModel("Honda Civic")
-                .setPickupDateTime(LocalDateTime.of(2024, 4, 1, 12, 0))
-                .setReturnDateTime(LocalDateTime.of(2024, 4, 3, 12, 0))
-                .build();
-
-        repository.addReservation(reservation1);
-        repository.addReservation(reservation2);
-
-        repository.removeReservation(reservation1);
-
-        List<Reservation> allReservations = repository.getAllReservations();
-        assertEquals(1, allReservations.size());
-        assertFalse(allReservations.contains(reservation1));
-        assertTrue(allReservations.contains(reservation2));
+        System.out.println(updated);
     }
 
     @Test
-    public void testFindReservationByID() {
-        Reservation reservation = new Reservation.Builder()
-                .setReservationID("1")
-                .setCustomerID("101")
-                .setCarModel("Toyota Corolla")
-                .setPickupDateTime(LocalDateTime.of(2024, 3, 25, 10, 0))
-                .setReturnDateTime(LocalDateTime.of(2024, 3, 27, 15, 0))
-                .build();
-
-        repository.addReservation(reservation);
-
-        Optional<Reservation> foundReservation = repository.findReservationByID("1");
-        assertTrue(foundReservation.isPresent());
-        assertEquals(reservation, foundReservation.get());
+    @Order(5)
+    void delete() {
+        assert reservation != null;
+        assertTrue(repository.delete(reservation.getReservationID()));
+        System.out.println("Reservation Deleted");
     }
 
     @Test
-    public void testUpdateReservation() {
-        Reservation reservation = new Reservation.Builder()
-                //.setReservationID("1")
-                .setCustomerID("101")
-                .setCarModel("Toyota Corolla")
-                .setPickupDateTime(LocalDateTime.of(2024, 3, 25, 10, 0))
-                .setReturnDateTime(LocalDateTime.of(2024, 3, 27, 15, 0))
-                .build();
-
-        repository.addReservation(reservation);
-
-        Reservation updatedReservation = new Reservation.Builder()
-                .setCarModel("Toyota Camry")
-                .build();
-
+    @Order(4)
+    void getAll() {
+        System.out.println(repository.getAll());
     }
 }

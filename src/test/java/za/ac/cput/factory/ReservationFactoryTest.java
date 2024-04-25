@@ -5,39 +5,24 @@ import za.ac.cput.domain.Reservation;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-
-public class ReservationFactoryTest {
+class ReservationFactoryTest {
 
     @Test
-    public void testCreateReservation() {
-        String reservationID = "1";
-        String customerID = "101";
-        String carModel = "Toyota Corolla";
-        LocalDateTime pickupDateTime = LocalDateTime.of(2024, 3, 25, 10, 0);
-        LocalDateTime returnDateTime = LocalDateTime.of(2024, 3, 27, 15, 0);
+    void testBuildReservation() {
+        Reservation r = ReservationFactory.buildReservation("R001", "C001", "Toyota Yaris",
+                LocalDateTime.now().plusDays(1), LocalDateTime.now().plusDays(3));
+        assertNotNull(r);
 
-        Reservation reservation = ReservationFactory.createReservation(reservationID, customerID, carModel, pickupDateTime, returnDateTime);
-
-        assertNotNull(reservation);
-        assertEquals(reservationID, reservation.getReservationID());
-        assertEquals(customerID, reservation.getCustomerID());
-        assertEquals(carModel, reservation.getCarModel());
-        assertEquals(pickupDateTime, reservation.getPickupDateTime());
-        assertEquals(returnDateTime, reservation.getReturnDateTime());
+        System.out.println(r.toString());
     }
 
-    public static class ReservationFactory {
-        public static Reservation createReservation(String reservationID, String customerID, String carModel, LocalDateTime pickupDateTime, LocalDateTime returnDateTime) {
-            return new Reservation.Builder()
-                    .setReservationID(reservationID)
-                    .setCustomerID(customerID)
-                    .setCarModel(carModel)
-                    .setPickupDateTime(pickupDateTime)
-                    .setReturnDateTime(returnDateTime)
-                    .build();
-        }
-}
+    @Test
+    void testBuildReservationWithFail() {
+        Reservation r = ReservationFactory.buildReservation("", "", "", null, null);
+        assertNull(r);
+
+        System.out.println("Failed to create reservation.");
+    }
 }
