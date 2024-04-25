@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CarRepositoryTest {
 
-    private static ICarRepository repository= CarRepository.getRepository();
+    private static final ICarRepository repository= CarRepository.getRepository();
 
-    private Car car = CarFactory.buildCar("Toyota", "Yaris", "Black",
+    private static final Car car = CarFactory.buildCar("Toyota", "Yaris", "Black",
                                             "CA2323", "155km","Available", "R800");
 
 

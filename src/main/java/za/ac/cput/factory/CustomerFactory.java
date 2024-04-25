@@ -6,20 +6,20 @@ import za.ac.cput.util.Helper;
 
 public class CustomerFactory {
 
-    public static Customer buildCustomer(String customerId,
-                                         String custFName,
+    public static Customer buildCustomer(String custFName,
                                          String custLName,
                                          String email,
                                          String membershipStatus) {
 
-        if (Helper.isNullorEmpty(customerId) || Helper.isNullorEmpty(custFName) || Helper.isNullorEmpty(custLName)
+        if (Helper.isNullorEmpty(custFName) || Helper.isNullorEmpty(custLName)
                 || Helper.isNullorEmpty(email) || Helper.isNullorEmpty(membershipStatus))
             return null;
 
 
-        String customerID = Helper.generateId();
+        String customerId = Helper.generateId();
 
-        return new Customer.Builder().setCustFName(custFName)
+        return new Customer.Builder().setCustomerId(customerId)
+                .setCustFName(custFName)
                 .setCustLName(custLName)
                 .setEmail(email)
                 .setMembershipStatus(membershipStatus)

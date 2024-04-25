@@ -9,7 +9,7 @@ class CustomerFactoryTest {
 
     @Test
     void testBuildCustomer(){
-        Customer cu = CustomerFactory.buildCustomer("SM22","Sinothando", "Masiki", "sinomasi@gmail.com","standard");
+        Customer cu = CustomerFactory.buildCustomer("SM22","Sinothando", "Masiki", "sinomasi@gmail.com");
         assertNotNull(cu);
 
         System.out.println(cu.toString());
@@ -17,7 +17,7 @@ class CustomerFactoryTest {
 
     @Test
     void testBuildCustomerWithFail(){
-        Customer cu = CustomerFactory.buildCustomer("","","","","");
+        Customer cu = CustomerFactory.buildCustomer("","","","");
         assertNotNull(cu);
 
         System.out.println(cu.toString());

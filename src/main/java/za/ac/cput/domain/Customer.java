@@ -11,16 +11,16 @@ public class Customer {
 
     private String email;
 
-    private String MembershipStatus;
+    private String membershipStatus;
 
-    private Customer(){
-
-    }
+    private Customer(){}
 
     public Customer(Builder builder){
         this.customerId = builder.customerId;
         this.custFName = builder.custFName;
         this.custLName = builder.custLName;
+        this.email = builder.email;
+        this.membershipStatus = builder.membershipStatus;
     }
 
     public String getCustomerId() {
@@ -40,7 +40,7 @@ public class Customer {
     }
 
     public String getMembershipStatus() {
-        return MembershipStatus;
+        return membershipStatus;
     }
 
     @Override
@@ -48,12 +48,12 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(customerId, customer.customerId) && Objects.equals(custFName, customer.custFName) && Objects.equals(custLName, customer.custLName) && Objects.equals(email, customer.email) && Objects.equals(MembershipStatus, customer.MembershipStatus);
+        return Objects.equals(customerId, customer.customerId) && Objects.equals(custFName, customer.custFName) && Objects.equals(custLName, customer.custLName) && Objects.equals(email, customer.email) && Objects.equals(membershipStatus, customer.membershipStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerId, custFName, custLName, email, MembershipStatus);
+        return Objects.hash(customerId, custFName, custLName, email, membershipStatus);
     }
 
 
@@ -64,7 +64,7 @@ public class Customer {
                 ", custFName='" + custFName + '\'' +
                 ", custLName='" + custLName + '\'' +
                 ", email='" + email + '\'' +
-                ", MembershipStatus='" + MembershipStatus + '\'' +
+                ", MembershipStatus='" + membershipStatus + '\'' +
                 '}';
     }
 
@@ -77,10 +77,11 @@ public class Customer {
 
         private String email;
 
-        private String MembershipStatus;
+        private String membershipStatus;
 
-        public void setCustomerId(String customerId) {
+        public Builder setCustomerId(String customerId) {
             this.customerId = customerId;
+            return this;
 
         }
 
@@ -100,15 +101,15 @@ public class Customer {
         }
 
         public Builder setMembershipStatus(String membershipStatus) {
-            MembershipStatus = membershipStatus;
+            this.membershipStatus = membershipStatus;
             return this;
         }
 
        public Builder copy(Customer customer){this.customerId = customer.customerId;
            this.custFName = customer.custFName;
            this.custLName = customer.custLName;
-this.email = customer.email;
-this.MembershipStatus = customer.MembershipStatus;
+           this.email = customer.email;
+           this.membershipStatus = customer.membershipStatus;
 return this;
 }
     public Customer build(){

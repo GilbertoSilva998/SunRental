@@ -11,12 +11,12 @@ import za.ac.cput.factory.CustomerFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestMethodOrder(MethodOrderer.MethodName.OrderAnnotation.class)
 class CustomerRepositoryTest {
 
-    private static final ICustomerRepository repository= CustomerRepository.getRepository();
+    private static final ICustomerRepository repository = CustomerRepository.getRepository();
 
-    private static final Customer customer = CustomerFactory.buildCustomer("dd55", "Didi", "Duncan", "dDuncan@gmail.com", "Premium");
+    private static final Customer customer = CustomerFactory.buildCustomer("dd55", "Didi", "Duncan", "dDuncan@gmail.com");
 
     @Test
     void getRepository() {
@@ -40,7 +40,7 @@ class CustomerRepositoryTest {
     }
 
     @Test
-    @Order(4)
+    @Order(3)
     void update() {
         Customer newCustomer = new Customer.Builder().copy(customer).setCustLName("Moni").build();
         Customer updated = repository.update(newCustomer);
@@ -50,14 +50,14 @@ class CustomerRepositoryTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void delete() {
         assertTrue(repository.delete(customer.getCustomerId()));
         System.out.println("Customer Deleted");
     }
 
     @Test
-    @Order(5)
+    @Order(4)
     void getAll() {
         System.out.println(repository.getAll());
     }

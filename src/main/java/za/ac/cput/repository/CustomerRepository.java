@@ -9,7 +9,7 @@ public class CustomerRepository implements ICustomerRepository {
 
     private static ICustomerRepository repository = null;
 
-    private List<Customer> customerList;
+    private List<Customer> customerList = new ArrayList<>();
 
     private CustomerRepository() {
         customerList = new ArrayList<Customer>();
