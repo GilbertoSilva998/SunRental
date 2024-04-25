@@ -9,7 +9,7 @@ public class CarRepository implements ICarRepository{
 
     private static ICarRepository repository = null;
 
-    private List<Car> carList;
+    private List<Car> carList = new ArrayList<>();
 
     private CarRepository (){
         carList = new ArrayList<Car>();

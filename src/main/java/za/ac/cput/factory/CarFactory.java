@@ -13,9 +13,11 @@ public class CarFactory {
 
         if ( Helper.isNullorEmpty(make) || Helper.isNullorEmpty(model)
          || Helper.isNullorEmpty(color) || Helper.isNullorEmpty(licensePlate) || Helper.isNullorEmpty(currentMileage) ||
-                Helper.isNullorEmpty(rentalStatus) || Helper.isNullorEmpty(dailyRentalRate))
+                Helper.isNullorEmpty(rentalStatus) || Helper.isNullorEmpty(dailyRentalRate)) {
 
-        return null;
+            return null;
+
+        }
 
         String carID = Helper.generateId();
 

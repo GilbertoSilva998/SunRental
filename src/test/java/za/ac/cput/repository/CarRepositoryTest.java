@@ -9,7 +9,7 @@ import za.ac.cput.factory.CarFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestMethodOrder(MethodOrderer.MethodName.OrderAnnotation.class)
 class CarRepositoryTest {
 
     private static final ICarRepository repository= CarRepository.getRepository();
@@ -21,6 +21,7 @@ class CarRepositoryTest {
     @Test
     @Order(1)
     void create() {
+        assert car != null;
         Car created = repository.create(car);
         assertNotNull(created);
 
@@ -30,6 +31,7 @@ class CarRepositoryTest {
     @Test
     @Order(2)
     void read() {
+        assert car != null;
         Car read = repository.read(car.getCarID());
         assertNotNull(read);
         System.out.println(read);
@@ -38,6 +40,7 @@ class CarRepositoryTest {
     @Test
     @Order(3)
     void update() {
+        assert car != null;
         Car newCar = new Car.Builder().copy(car).setMake("Volvo").build();
         Car updated = repository.update(newCar);
         assertNotNull(updated);
@@ -48,6 +51,7 @@ class CarRepositoryTest {
     @Test
     @Order(5)
     void delete() {
+        assert car != null;
         assertTrue(repository.delete(car.getCarID()));
         System.out.println("Car Deleted");
     }
