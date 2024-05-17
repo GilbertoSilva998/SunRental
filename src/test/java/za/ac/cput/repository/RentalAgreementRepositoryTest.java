@@ -5,74 +5,69 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.domain.RentalAgreement;
-import za.ac.cput.factory.RentalAgreementFactory;
-
 import static org.junit.jupiter.api.Assertions.*;
+import static za.ac.cput.factory.RentalAgreementFactory.createRental;
 /*
     Paulose Maja 220214115
  */
+
 @TestMethodOrder(MethodOrderer.MethodName.OrderAnnotation.class)
 class RentalAgreementRepositoryTest {
 
     private static final IRentalAgreementRepository rentalRepository = RentalAgreementRepository.getRepository();
-    private static RentalAgreement rental;
+    private static final RentalAgreement rental = createRental("2001", "3001", "Cape Town",
+            "2024-05-17T08:30:00", "2024-05-17T16:00:00", true,
+            new String[]{"GPS"}, true);
 
     @Test
     @Order(1)
     void create() {
-        // Arrange
-        rental = createRental("1001", "2001", "3001", "Cape Town", "Location B", "08:30am - 4:00pm", "08:30am - 4:00pm", true, new String[]{"GPS"}, "Terms 1");
-
-        // Act
-        RentalAgreement createdRental = rentalRepository.create(rental);
-
-        // Assert
-        assertNotNull(createdRental);
-        assertEquals(rental.getAgreementID(), createdRental.getAgreementID());
+        assertNotNull(rental);
+        RentalAgreement created = rentalRepository.create(rental);
+        assertNotNull(created);
+        assertEquals(rental.getAgreementID(), created.getAgreementID());
+        System.out.println(created);
     }
 
     @Test
     @Order(2)
     void read() {
-        // Act
-        RentalAgreement retrievedRental = rentalRepository.read(rental.getAgreementID());
-
-        // Assert
-        assertNotNull(retrievedRental);
-        assertEquals(rental.getAgreementID(), retrievedRental.getAgreementID());
+        assertNotNull(rental);
+        RentalAgreement read = rentalRepository.read(rental.getAgreementID());
+        assertNotNull(read);
+        assertEquals(rental.getAgreementID(), read.getAgreementID());
+        System.out.println(read);
     }
 
     @Test
     @Order(3)
     void update() {
-        assert rental != null;
-        RentalAgreement newRentalAgreement = new RentalAgreement.Builder().copy(rental).setPickupLocation("Cape Town").build();
-        RentalAgreement updated = rentalRepository.update(newRentalAgreement);
+        assertNotNull(rental);
+        RentalAgreement updatedRental = new RentalAgreement.Builder()
+                .copy(rental)
+                .setLocation("New Location")
+                .build();
+        RentalAgreement updated = rentalRepository.update(updatedRental);
         assertNotNull(updated);
-
+        assertEquals("New Location", updated.getLocation());
         System.out.println(updated);
     }
 
     @Test
     @Order(4)
     void getAll() {
-        // Act
+        assertNotNull(rental);
         rentalRepository.create(rental);
         assertNotNull(rentalRepository.getAll());
+        System.out.println(rentalRepository.getAll());
     }
 
     @Test
     @Order(5)
     void delete() {
-        assert rental != null;
+        assertNotNull(rental);
         assertTrue(rentalRepository.delete(rental.getAgreementID()));
         System.out.println("RentalAgreement Deleted");
     }
 
-    private RentalAgreement createRental(String agreementID, String customerID, String carID, String pickupLocation,
-                                         String dropOffLocation, String pickupDateTime, String dropOffDateTime,
-                                         boolean insuranceCoverage, String[] additionalServices, String termsAndConditions) {
-        return RentalAgreementFactory.createRental(agreementID, customerID, carID, pickupLocation, dropOffLocation,
-                pickupDateTime, dropOffDateTime, insuranceCoverage, additionalServices, termsAndConditions);
-    }
 }

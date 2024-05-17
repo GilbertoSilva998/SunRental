@@ -1,5 +1,9 @@
 package za.ac.cput.domain;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -7,35 +11,38 @@ import java.util.Objects;
     Paulose Maja 220214115
  */
 public class RentalAgreement {
-    private  String agreementID;
-    private  String customerID;
-    private  String carID;
-    private  String pickupLocation;
-    private  String dropOffLocation;
-    private  String pickupDateTime;
-    private  String dropOffDateTime;
-    private  boolean insuranceCoverage;
-    private  String[] additionalServices;
-    private  String termsAndConditions;
+    private String agreementID;
+    private String customerID;
+    private String vanNumber;
+    private String location;
+    private final LocalTime OPENING_TIME = LocalTime.of(8, 30);
+    private final LocalTime CLOSING_TIME = LocalTime.of(17, 0);
+    private LocalDate today;
+    private DayOfWeek dayOfWeek;
+    private boolean insuranceCoverage;
+    private String[] additionalServices;
+    private boolean termsAndConditions;
+    private LocalDateTime pickupDateTime;
+    private LocalDateTime dropOffDateTime;
 
     // Constructor
-    private RentalAgreement(){
+    private RentalAgreement() {
     }
 
     public RentalAgreement(Builder builder) {
         this.agreementID = builder.agreementID;
         this.customerID = builder.customerID;
-        this.carID = builder.carID;
-        this.pickupLocation = builder.pickupLocation;
-        this.dropOffLocation = builder.dropOffLocation;
-        this.pickupDateTime = builder.pickupDateTime;
-        this.dropOffDateTime = builder.dropOffDateTime;
+        this.vanNumber = builder.vanNumber;
+        this.location = builder.location;
+        this.today = builder.today;
+        this.dayOfWeek = builder.dayOfWeek;
         this.insuranceCoverage = builder.insuranceCoverage;
         this.additionalServices = builder.additionalServices;
         this.termsAndConditions = builder.termsAndConditions;
+        this.pickupDateTime = builder.pickupDateTime;
+        this.dropOffDateTime = builder.dropOffDateTime;
     }
 
-    // Getters
     public String getAgreementID() {
         return agreementID;
     }
@@ -44,24 +51,28 @@ public class RentalAgreement {
         return customerID;
     }
 
-    public String getCarID() {
-        return carID;
+    public String getVanNumber() {
+        return vanNumber;
     }
 
-    public String getPickupLocation() {
-        return pickupLocation;
+    public String getLocation() {
+        return location;
     }
 
-    public String getDropOffLocation() {
-        return dropOffLocation;
+    public LocalTime getOPENING_TIME() {
+        return OPENING_TIME;
     }
 
-    public String getPickupDateTime() {
-        return pickupDateTime;
+    public LocalTime getCLOSING_TIME() {
+        return CLOSING_TIME;
     }
 
-    public String getDropOffDateTime() {
-        return dropOffDateTime;
+    public LocalDate getToday() {
+        return today;
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
     }
 
     public boolean isInsuranceCoverage() {
@@ -72,46 +83,41 @@ public class RentalAgreement {
         return additionalServices;
     }
 
-    public String getTermsAndConditions() {
+    public boolean isTermsAndConditions() {
         return termsAndConditions;
     }
 
-    // Equals, HashCode, ToString methods
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RentalAgreement that = (RentalAgreement) o;
-        return agreementID == that.agreementID &&
-                customerID == that.customerID &&
-                carID == that.carID &&
-                insuranceCoverage == that.insuranceCoverage &&
-                Objects.equals(pickupLocation, that.pickupLocation) &&
-                Objects.equals(dropOffLocation, that.dropOffLocation) &&
-                Objects.equals(pickupDateTime, that.pickupDateTime) &&
-                Objects.equals(dropOffDateTime, that.dropOffDateTime) &&
-                Arrays.equals(additionalServices, that.additionalServices) &&
-                Objects.equals(termsAndConditions, that.termsAndConditions);
+    public LocalDateTime getPickupDateTime() {
+        return pickupDateTime;
+    }
+
+    public LocalDateTime getDropOffDateTime() {
+        return dropOffDateTime;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(agreementID, customerID, carID, pickupLocation, dropOffLocation, pickupDateTime, dropOffDateTime, insuranceCoverage, Arrays.hashCode(additionalServices), termsAndConditions);
+        int result = Objects.hash(agreementID, customerID, vanNumber, location, OPENING_TIME, CLOSING_TIME, today, dayOfWeek, insuranceCoverage, termsAndConditions, pickupDateTime, dropOffDateTime);
+        result = 31 * result + Arrays.hashCode(additionalServices);
+        return result;
     }
 
     @Override
     public String toString() {
         return "RentalAgreement{" +
-                "agreementID=" + agreementID +
-                ", customerID=" + customerID +
-                ", carID=" + carID +
-                ", pickupLocation='" + pickupLocation + '\'' +
-                ", dropOffLocation='" + dropOffLocation + '\'' +
-                ", pickupDateTime=" + pickupDateTime +
-                ", dropOffDateTime=" + dropOffDateTime +
+                "agreementID='" + agreementID + '\'' +
+                ", customerID='" + customerID + '\'' +
+                ", vanNumber='" + vanNumber + '\'' +
+                ", location='" + location + '\'' +
+                ", OPENING_TIME=" + OPENING_TIME +
+                ", CLOSING_TIME=" + CLOSING_TIME +
+                ", today=" + today +
+                ", dayOfWeek=" + dayOfWeek +
                 ", insuranceCoverage=" + insuranceCoverage +
                 ", additionalServices=" + Arrays.toString(additionalServices) +
-                ", termsAndConditions='" + termsAndConditions + '\'' +
+                ", termsAndConditions=" + termsAndConditions +
+                ", pickupDateTime=" + pickupDateTime +
+                ", dropOffDateTime=" + dropOffDateTime +
                 '}';
     }
 
@@ -119,14 +125,17 @@ public class RentalAgreement {
     public static class Builder {
         private String agreementID;
         private String customerID;
-        private String carID;
-        private String pickupLocation;
-        private String dropOffLocation;
-        private String pickupDateTime;
-        private String dropOffDateTime;
+        private String vanNumber;
+        private String location;
+        private final LocalTime OPENING_TIME = LocalTime.of(8, 30);
+        private final LocalTime CLOSING_TIME = LocalTime.of(17, 0);
+        private LocalDate today;
+        private DayOfWeek dayOfWeek;
         private boolean insuranceCoverage;
         private String[] additionalServices;
-        private String termsAndConditions;
+        private boolean termsAndConditions;
+        private LocalDateTime pickupDateTime;
+        private LocalDateTime dropOffDateTime;
 
         public Builder setAgreementID(String agreementID) {
             this.agreementID = agreementID;
@@ -138,28 +147,23 @@ public class RentalAgreement {
             return this;
         }
 
-        public Builder setCarID(String carID) {
-            this.carID = carID;
+        public Builder setVanNumber(String vanNumber) {
+            this.vanNumber = vanNumber;
             return this;
         }
 
-        public Builder setPickupLocation(String pickupLocation) {
-            this.pickupLocation = pickupLocation;
+        public Builder setLocation(String location) {
+            this.location = location;
             return this;
         }
 
-        public Builder setDropOffLocation(String dropOffLocation) {
-            this.dropOffLocation = dropOffLocation;
+        public Builder setToday(LocalDate today) {
+            this.today = today;
             return this;
         }
 
-        public Builder setPickupDateTime(String pickupDateTime) {
-            this.pickupDateTime = pickupDateTime;
-            return this;
-        }
-
-        public Builder setDropOffDateTime(String dropOffDateTime) {
-            this.dropOffDateTime = dropOffDateTime;
+        public Builder setDayOfWeek(DayOfWeek dayOfWeek) {
+            this.dayOfWeek = dayOfWeek;
             return this;
         }
 
@@ -173,22 +177,33 @@ public class RentalAgreement {
             return this;
         }
 
-        public Builder setTermsAndConditions(String termsAndConditions) {
+        public Builder setTermsAndConditions(boolean termsAndConditions) {
             this.termsAndConditions = termsAndConditions;
             return this;
         }
 
-        public Builder copy(RentalAgreement rentalAgreement){
+        public Builder setPickupDateTime(LocalDateTime pickupDateTime) {
+            this.pickupDateTime = pickupDateTime;
+            return this;
+        }
+
+        public Builder setDropOffDateTime(LocalDateTime dropOffDateTime) {
+            this.dropOffDateTime = dropOffDateTime;
+            return this;
+        }
+
+        public Builder copy(RentalAgreement rentalAgreement) {
             this.agreementID = rentalAgreement.agreementID;
             this.customerID = rentalAgreement.customerID;
-            this.carID = rentalAgreement.carID;
-            this.pickupLocation = rentalAgreement.pickupLocation;
-            this.dropOffLocation = rentalAgreement.dropOffLocation;
-            this.pickupDateTime = rentalAgreement.pickupDateTime;
-            this.dropOffDateTime = rentalAgreement.dropOffDateTime;
+            this.vanNumber = rentalAgreement.vanNumber;
+            this.location = rentalAgreement.location;
+            this.today = rentalAgreement.today;
+            this.dayOfWeek = rentalAgreement.dayOfWeek;
             this.insuranceCoverage = rentalAgreement.insuranceCoverage;
             this.additionalServices = rentalAgreement.additionalServices;
             this.termsAndConditions = rentalAgreement.termsAndConditions;
+            this.pickupDateTime = rentalAgreement.pickupDateTime;
+            this.dropOffDateTime = rentalAgreement.dropOffDateTime;
             return this;
         }
 
@@ -196,7 +211,5 @@ public class RentalAgreement {
             return new RentalAgreement(this);
         }
     }
-
-
 
 }

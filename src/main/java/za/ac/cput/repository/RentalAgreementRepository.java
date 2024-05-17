@@ -31,10 +31,7 @@ public class RentalAgreementRepository implements IRentalAgreementRepository {
     @Override
     public RentalAgreement create(RentalAgreement rentalAgreement) {
         boolean success = rentals.add(rentalAgreement);
-        if (success) {
-            return rentalAgreement;
-        }
-        return null;
+        return rentalAgreement;
     }
 
     @Override
@@ -56,8 +53,8 @@ public class RentalAgreementRepository implements IRentalAgreementRepository {
 
         boolean success = delete(id);
         if (success) {
-            if (rentals.add(rentalAgreement))
-                return rentalAgreement;
+            rentals.add(rentalAgreement);
+            return rentalAgreement;
         }
         return null;
     }
