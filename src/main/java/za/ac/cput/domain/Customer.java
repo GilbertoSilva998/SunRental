@@ -110,7 +110,7 @@ public class Customer {
            this.custLName = customer.custLName;
            this.email = customer.email;
            this.membershipStatus = customer.membershipStatus;
-return this;
+           return this;
 }
     public Customer build(){
 return new Customer(this);
