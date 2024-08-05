@@ -12,6 +12,7 @@ public class Helper {
         return UUID.randomUUID().toString();
     }
 
+
     public static boolean isValidEmail(String email){
         EmailValidator ev = EmailValidator.getInstance();
         return ev.isValid(email);
