@@ -1,154 +1,84 @@
 package za.ac.cput.service;
-/**
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import za.ac.cput.domain.ContactMessage;
-import za.ac.cput.repository.ContactMessageRepository;
 
-import java.util.Arrays;
+import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import za.ac.cput.domain.ContactMessage;
+import za.ac.cput.factory.ContactMessageFactory;
+
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
+@SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ContactMessageServiceTest {
 
-    @Mock
-    private ContactMessageRepository repository;
+    @Autowired
+    private ContactMessageService contactMessageService;
 
-    @InjectMocks
-    private ContactMessageService service;
+    private ContactMessage message;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        message = ContactMessageFactory.buildContactMessage(
+                null, "Khayelitsha", "Paulose", "Maja", "073 828 8378",
+                "paulosemaja14@gmail.com", "paulosemaja14@gmail.com",
+                "The booking button is not working on my side."
+        );
     }
 
     @Test
+    @Order(1)
     void create() {
-        ContactMessage contactMessage = new ContactMessage.Builder()
-                .setBranch("Khayelitsha")
-                .setFirstName("Kupo")
-                .setLastName("Maja")
-                .setPhone("0123456789")
-                .setEmail("kupomaja@gmail.com")
-                .setConfirmEmail("kupomaja@gmail.com")
-                .setMessage("This is a test message")
-                .build();
-
-        when(repository.create(any(ContactMessage.class))).thenReturn(contactMessage);
-
-        ContactMessage created = service.create(contactMessage);
-
+        ContactMessage created = contactMessageService.create(message);
         assertNotNull(created);
-        assertEquals(contactMessage, created);
-        verify(repository, times(1)).create(contactMessage);
+        message = new ContactMessage.Builder()
+                .copy(created)
+                .build(); // Updated to use the created message object directly
+        System.out.println(created);
     }
 
     @Test
+    @Order(2)
     void read() {
-        Long id = 1L;
-        ContactMessage contactMessage = new ContactMessage.Builder()
-                .setId(id)
-                .setBranch("Khayelitsha")
-                .setFirstName("Kupo")
-                .setLastName("Maja")
-                .setPhone("0123456789")
-                .setEmail("kupomaja@gmail.com")
-                .setConfirmEmail("kupomaja@gmail.com")
-                .setMessage("This is a test message")
-                .build();
-
-        when(repository.read(id)).thenReturn(contactMessage);
-
-        ContactMessage found = service.read(id);
-
-        assertNotNull(found);
-        assertEquals(contactMessage, found);
-        verify(repository, times(1)).read(id);
+        ContactMessage createdMessage = contactMessageService.create(message);
+        ContactMessage readMessage = contactMessageService.read(createdMessage.getMessageId()); // Read using the generated messageId
+        assertNotNull(readMessage);
+        System.out.println(readMessage);
     }
 
     @Test
+    @Order(3)
     void update() {
-        ContactMessage contactMessage = new ContactMessage.Builder()
-                .setId(1L)
-                .setBranch("Khayelitsha")
-                .setFirstName("Kupo")
-                .setLastName("Maja")
-                .setPhone("0123456789")
-                .setEmail("kupomaja@gmail.com")
-                .setConfirmEmail("kupomaja@gmail.com")
-                .setMessage("This is a test message")
+        ContactMessage created = contactMessageService.create(message);
+        ContactMessage newMessage = new ContactMessage.Builder()
+                .copy(created)
+                .setBranch("Wellington")
                 .build();
-
-        when(repository.update(any(ContactMessage.class))).thenReturn(contactMessage);
-
-        ContactMessage updated = service.update(contactMessage);
-
+        ContactMessage updated = contactMessageService.update(newMessage);
         assertNotNull(updated);
-        assertEquals(contactMessage, updated);
-        verify(repository, times(1)).update(contactMessage);
+        assertEquals("Wellington", updated.getBranch());
+        System.out.println(updated);
     }
 
     @Test
+    @Order(4)
     void getAll() {
-        ContactMessage contactMessage1 = new ContactMessage.Builder()
-                .setBranch("Khayelitsha")
-                .setFirstName("Kupo")
-                .setLastName("Maja")
-                .setPhone("0123456789")
-                .setEmail("kupomaja@gmail.com")
-                .setConfirmEmail("kupomaja@gmail.com")
-                .setMessage("Please get to me, with how to book.")
-                .build();
+        contactMessageService.create(message);
+        List<ContactMessage> messages = contactMessageService.getAll();
+        assertNotNull(messages);
+        assertFalse(messages.isEmpty());
+        System.out.println(messages);
+    }
 
-        ContactMessage contactMessage2 = new ContactMessage.Builder()
-                .setBranch("Woodstock")
-                .setFirstName("Paul")
-                .setLastName("Smith")
-                .setPhone("0987654321")
-                .setEmail("paulsmith@gmail.com")
-                .setConfirmEmail("paulsmith@gmail.com")
-                .setMessage("I need to book, how to do it?")
-                .build();
-
-        List<ContactMessage> contactMessages = Arrays.asList(contactMessage1, contactMessage2);
-
-        when(repository.getAll()).thenReturn(contactMessages);
-
-        List<ContactMessage> allMessages = service.getAll();
-
-        assertNotNull(allMessages);
-        assertEquals(2, allMessages.size());
-        assertTrue(allMessages.contains(contactMessage1));
-        assertTrue(allMessages.contains(contactMessage2));
-        verify(repository, times(1)).getAll();
+    @Test
+    @Order(5)
+    @Disabled  // Disabled to avoid deleting now, will test this later
+    void delete() {
+        ContactMessage created = contactMessageService.create(message);
+        contactMessageService.delete(created.getMessageId());
+        assertNull(contactMessageService.read(created.getMessageId())); // the message is deleted
+        System.out.println("Success: Deleted the contact message!");
     }
 }
-*/
-
-import org.junit.jupiter.api.Test;
-
-class ContactMessageServiceTest {
-
-    @Test
-    void create() {
-    }
-
-    @Test
-    void read() {
-    }
-
-    @Test
-    void update() {
-    }
-
-    @Test
-    void getAll() {
-    }
-}
-

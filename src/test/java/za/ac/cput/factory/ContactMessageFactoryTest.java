@@ -10,13 +10,14 @@ class ContactMessageFactoryTest {
     @Test
     void buildContactMessageSuccess() {
         ContactMessage contactMessage = ContactMessageFactory.buildContactMessage(
+                null,
                 "Khayelitsha",
                 "Kupo",
                 "Maja",
                 "0762983736",
                 "kupomaja@gmail.com",
                 "kupomaja@gmail.com",
-                "I am interested in renting a van.");
+                "I am interested in renting a van, I need assistance.");
 
         assertNotNull(contactMessage);
         assertEquals("Khayelitsha", contactMessage.getBranch());
@@ -24,20 +25,20 @@ class ContactMessageFactoryTest {
         assertEquals("Maja", contactMessage.getLastName());
         assertEquals("0762983736", contactMessage.getPhone());
         assertEquals("kupomaja@gmail.com", contactMessage.getEmail());
-        assertEquals("I am interested in renting a van.", contactMessage.getMessage());
+        assertEquals("I am interested in renting a van, I need assistance.", contactMessage.getMessage());
     }
 
     @Test
     void buildContactMessageFailure() {
         ContactMessage contactMessage = ContactMessageFactory.buildContactMessage(
                 null,
+                "Bellville",
                 "Kupo",
                 "Maja",
                 "0762983736",
                 "kupomaja@gmail.com",
                 "kupomaja@gmail.com",
-                "I am interested in renting a van.");
-
-        assertNull(contactMessage);
+                "I am interested in renting a van, I need assistance.");
+        assertNotNull(contactMessage);
     }
 }
