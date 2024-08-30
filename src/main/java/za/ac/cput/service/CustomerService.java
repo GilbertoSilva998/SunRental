@@ -36,6 +36,9 @@ public class CustomerService implements ICustomerService {
         return repository.findByEmail(email);
     }
 
+
+
+
     public Customer register(Customer customer) {
         if (repository.findByEmail(customer.getEmail()) != null) {
             throw new IllegalArgumentException("Email already registered");
