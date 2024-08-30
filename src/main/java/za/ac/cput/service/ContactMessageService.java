@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.ContactMessage;
 import za.ac.cput.repository.ContactMessageRepository;
 
+import java.util.List;
+
 @Service
-public class ContactMessageService {
+public class ContactMessageService implements IContactMessageService {
 
     private final ContactMessageRepository contactMessageRepository;
 
@@ -15,9 +17,31 @@ public class ContactMessageService {
         this.contactMessageRepository = contactMessageRepository;
     }
 
-    public ContactMessage saveContactMessage(ContactMessage contactMessage) {
+    @Override
+    public ContactMessage create(ContactMessage contactMessage) {
         return contactMessageRepository.save(contactMessage);
     }
-}
 
+    @Override
+    public ContactMessage read(Long messageId) {
+        contactMessageRepository.findById(messageId);
+        return null;
+    }
+
+    @Override
+    public ContactMessage update(ContactMessage contactMessage) {
+        return contactMessageRepository.save(contactMessage);
+    }
+
+    @Override
+    public void delete(long messageId) {
+        contactMessageRepository.deleteById(messageId);
+    }
+
+    @Override
+    public List<ContactMessage> getAll() {
+        return contactMessageRepository.findAll();
+    }
+
+}
 
