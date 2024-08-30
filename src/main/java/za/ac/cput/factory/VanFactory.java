@@ -4,40 +4,41 @@ import za.ac.cput.domain.Van;
 import za.ac.cput.util.Helper;
 
 public class VanFactory {
-
-
-    public static Van buildCar(String vanID,
+    public static Van buildvan(String licensePlate,
                                String make,
                                String model,
-                               String year,
-                               String licensePlate,
+                               int year,
                                String vin,
-                               String capacity,
+                               int capacity,
                                String fuelType,
-                               String rentalStatus){
+                               boolean rentalStatus,
+                               byte[] image){
 
-        if (Helper.isNullorEmpty(vanID) || Helper.isNullorEmpty(make) || Helper.isNullorEmpty(model) ||
-         Helper.isNullorEmpty(year)|| Helper.isNullorEmpty(licensePlate) || Helper.isNullorEmpty(vin) ||
-                Helper.isNullorEmpty(capacity) || Helper.isNullorEmpty(fuelType) ||
-                Helper.isNullorEmpty(rentalStatus)) {
-
+        if (Helper.isNullorEmpty(licensePlate)||
+                Helper.isNullorEmpty(make) ||
+                Helper.isNullorEmpty(model) ||
+                year==0 ||
+                Helper.isNullorEmpty(vin) ||
+                capacity == 0 ||
+                Helper.isNullorEmpty(fuelType))
             return null;
 
-        }
+        if (image == null)
+            return null;
 
-
-
-        return new Van.Builder().setVanID(vanID)
+        return new Van.Builder()
+                .setLicensePlate(licensePlate)
                 .setMake(make)
                 .setModel(model)
                 .setYear(year)
-                .setLicensePlate(licensePlate)
                 .setVin(vin)
                 .setCapacity(capacity)
                 .setFuelType(fuelType)
                 .setRentalStatus(rentalStatus)
+                .setImage(image)
                 .build();
 
 
     }
 }
+

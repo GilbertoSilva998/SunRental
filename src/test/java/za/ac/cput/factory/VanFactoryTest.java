@@ -8,16 +8,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class VanFactoryTest {
 
     @Test
-    void testBuildCar(){
-        Van c = VanFactory.buildCar("0001","Toyota","Quantum","2014","CA1234","mmmw23","14","Gasoline","available");
-        assertNotNull(c);
+    void testBuildVan(){
+        byte[] image = new byte[0];
+        Van van = VanFactory.buildvan("CA 8080","Toyota","Quantum",2014,"CA1234",6,"Diesel",true, image);
+        assertNotNull(van);
 
-        System.out.println(c.toString());
+        System.out.println(van);
     }
 
     @Test
     void testBuildCarWithFail(){
-        Van c = VanFactory.buildCar("","","","","","","","","");
+        Van c = VanFactory.buildvan("","","",0,"",0,"",false, "".getBytes());
         assertNotNull(c);
 
         System.out.println(c.toString());

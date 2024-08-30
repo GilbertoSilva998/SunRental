@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
-        System.out.println("Program successfully running and server running at port number:8088");
+        System.out.println("Program successfully running and SERVER running at port number: 8080 and CLIENT port number: 8081");
     }
-
 }
