@@ -128,8 +128,6 @@ public class Van implements Serializable {
         private boolean rentalStatus;
         private byte[] image;
 
-        public Builder() {
-        }
 
         public Builder setLicensePlate(String licensePlate) {
             this.licensePlate = licensePlate;

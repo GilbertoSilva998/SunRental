@@ -9,7 +9,7 @@ import java.util.Objects;
 public class ContactMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  long messageId;
+    private Long id;
     private String branch;
     private String firstName;
     private String lastName;
@@ -21,7 +21,7 @@ public class ContactMessage {
     protected ContactMessage() {}
 
     private ContactMessage(Builder builder) {
-        this.messageId = builder.messageId;
+        this.id = builder.id;
         this.branch = builder.branch;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
@@ -31,8 +31,8 @@ public class ContactMessage {
         this.message = builder.message;
     }
 
-     public  long getMessageId() {
-        return messageId;
+    public Long getId() {
+        return id;
     }
 
     public String getBranch() {
@@ -72,18 +72,18 @@ public class ContactMessage {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactMessage that = (ContactMessage) o;
-        return Objects.equals(messageId, that.messageId) && Objects.equals(branch, that.branch) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(phone, that.phone) && Objects.equals(email, that.email) && Objects.equals(confirmEmail, that.confirmEmail) && Objects.equals(message, that.message);
+        return Objects.equals(id, that.id) && Objects.equals(branch, that.branch) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(phone, that.phone) && Objects.equals(email, that.email) && Objects.equals(confirmEmail, that.confirmEmail) && Objects.equals(message, that.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(messageId, branch, firstName, lastName, phone, email, confirmEmail, message);
+        return Objects.hash(id, branch, firstName, lastName, phone, email, confirmEmail, message);
     }
 
     @Override
     public String toString() {
         return "ContactMessage{" +
-                "id=" + messageId +
+                "id=" + id +
                 ", branch='" + branch + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -95,7 +95,7 @@ public class ContactMessage {
     }
 
     public static class Builder {
-        private long messageId;
+        private Long id;
         private String branch;
         private String firstName;
         private String lastName;
@@ -104,8 +104,8 @@ public class ContactMessage {
         private String confirmEmail;
         private String message;
 
-        public Builder setMessageId(long messageId) {
-            this.messageId = messageId;
+        public Builder setId(Long id) {
+            this.id = id;
             return this;
         }
 
@@ -145,7 +145,7 @@ public class ContactMessage {
         }
 
         public Builder copy(ContactMessage contactMessage) {
-            this.messageId = contactMessage.messageId;
+            this.id = contactMessage.id;
             this.branch = contactMessage.branch;
             this.firstName = contactMessage.firstName;
             this.lastName = contactMessage.lastName;

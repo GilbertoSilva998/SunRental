@@ -6,7 +6,6 @@ import za.ac.cput.util.Helper;
 public class ContactMessageFactory {
 
     public static ContactMessage buildContactMessage(
-            Long messageId,
             String branch,
             String firstName,
             String lastName,
@@ -15,13 +14,10 @@ public class ContactMessageFactory {
             String confirmEmail,
             String message) {
 
-        if (Helper.isNullorEmpty(branch) || Helper.isNullorEmpty(firstName) || Helper.isNullorEmpty(phone)
-                || Helper.isNullorEmpty(message)) {
-            return null;
-        }
+        if (Helper.isNullorEmpty(branch) || Helper.isNullorEmpty(firstName) || Helper.isNullorEmpty(phone) ||
+                Helper.isNullorEmpty(email) || Helper.isNullorEmpty(message) || !email.equals(confirmEmail)) {
 
-        if (!Helper.isValidEmail(email)  || !Helper.isValidEmail(confirmEmail)) {
-            throw new IllegalArgumentException("Invalid email format");
+            return null;
         }
 
         return new ContactMessage.Builder()

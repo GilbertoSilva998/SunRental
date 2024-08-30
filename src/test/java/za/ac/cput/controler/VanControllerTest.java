@@ -23,7 +23,7 @@ class VanControllerTest {
 
     @BeforeAll
     public static void setUp(){
-        van = VanFactory.buildvan("CA9000",
+        van = VanFactory.buildVan("CA9000",
                                   "Quantum",
                                   "Q1",
                                   2025,

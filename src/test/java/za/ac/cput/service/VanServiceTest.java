@@ -16,7 +16,7 @@ class VanServiceTest {
 
    byte[] image = new byte[0];
 
-   private final Van van = VanFactory.buildvan("DB2000",
+   private final Van van = VanFactory.buildVan("DB2000",
                                          "Tesla",
                                          "T1",
                                          2026,
@@ -55,14 +55,14 @@ class VanServiceTest {
         System.out.println(updated);
     }
 
-    @Test
-    @Disabled
-    @Order(5)
-    void delete(){
-        assert van != null;
-        service.deleteById(van.getLicensePlate());
-        System.out.println("Successfully deleted");
-    }
+//    @Test
+//    @Disabled
+//    @Order(5)
+//    void delete(){
+//        assert van != null;
+//        service.deleteById(van.getLicensePlate());
+//        System.out.println("Successfully deleted");
+//    }
 
     @Test
     @Order(4)

@@ -4,7 +4,7 @@ import za.ac.cput.domain.Van;
 import za.ac.cput.util.Helper;
 
 public class VanFactory {
-    public static Van buildvan(String licensePlate,
+    public static Van buildVan(String licensePlate,
                                String make,
                                String model,
                                int year,
