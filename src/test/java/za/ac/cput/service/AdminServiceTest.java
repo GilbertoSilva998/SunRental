@@ -34,10 +34,11 @@ class AdminServiceTest {
     @Order(1)
     void create() {
         Admin created = adminService.create(admin);
-        assertNotNull(created);
+
         admin = new Admin.Builder()
                 .copy(created)
                 .build(); // Updated to use the created admin object directly
+        assertNotNull(created);
         System.out.println(created);
     }
 
