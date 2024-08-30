@@ -10,7 +10,7 @@ import za.ac.cput.service.AdminService;
 import java.util.List;
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins = "http://localhost:8081") // use 8088 when testing with Postman
+@CrossOrigin(origins = "http://localhost:8081")
 public class AdminController {
     private final AdminService service;
 
