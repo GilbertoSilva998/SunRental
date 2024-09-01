@@ -10,7 +10,8 @@ class VanFactoryTest {
     @Test
     void testBuildVan(){
         byte[] image = new byte[0];
-        Van van = VanFactory.buildvan("CA 8080","Toyota","Quantum",2014,"CA1234",6,"Diesel",true, image);
+        Van van = VanFactory.buildvan("CA 8080","Toyota","Quantum",2014,
+                "CA1234",6,"Diesel",true, image);
         assertNotNull(van);
 
         System.out.println(van);
