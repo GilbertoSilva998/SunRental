@@ -1,15 +1,17 @@
 package za.ac.cput.domain;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-public class Booking {
+public class Booking implements Serializable {
     @Id
     private String bookingID;
     private LocalDate startDate;

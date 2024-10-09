@@ -10,14 +10,14 @@ public class CustomerFactoryTest {
 
     @Test
     void testBuildCustomer() {
-        Customer customer = CustomerFactory.buildCustomer(1L,"Kelly", "Khoza", "kelly123@gmail.com", "password123", "0712345678");
+        Customer customer = CustomerFactory.buildCustomer("Kelly", "Khoza", "kelly123@gmail.com", "password123", "0712345678");
         assertNotNull(customer);
         System.out.println(customer.toString());
     }
 
     @Test
     void testBuildCustomerWithFail(){
-        Customer customer = CustomerFactory.buildCustomer(1L,"", "Khoza", "kelly123@gmail.com", "password123", "0712345678");
+        Customer customer = CustomerFactory.buildCustomer("", "Khoza", "kelly123@gmail.com", "password123", "0712345678");
         assertNotNull(customer);
         System.out.println(customer.toString());
     }

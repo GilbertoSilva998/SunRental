@@ -22,7 +22,7 @@ public class Admin {
     }
 
     public Admin(Builder builder) {
-        this.adminId = builder.adminId;
+        //this.adminId = builder.adminId;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.email = builder.email;
@@ -81,17 +81,17 @@ public class Admin {
 
     //Admin Builder Class
     public static class Builder{
-        private long adminId;
+       // private long adminId;
         private String firstName;
         private String lastName;
         private String email;
         private String password;
         private String confirmPassword;
 
-        public Builder setAdminId(long adminId) {
-            this.adminId = adminId;
-            return this;
-        }
+//        public Builder setAdminId(long adminId) {
+//            this.adminId = adminId;
+//            return this;
+//        }
 
         public Builder setFirstName(String firstName) {
             this.firstName = firstName;
@@ -120,7 +120,7 @@ public class Admin {
         }
 
         public Builder copy(Admin admin){
-            this.adminId = admin.adminId;
+          //  this.adminId = admin.adminId;
             this.firstName = admin.firstName;
             this.lastName = admin.lastName;
             this.email = admin.email;

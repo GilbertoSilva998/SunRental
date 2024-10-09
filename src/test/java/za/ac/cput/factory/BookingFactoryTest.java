@@ -16,7 +16,7 @@ class BookingFactoryTest {
         byte[] image = new byte[0];
         Van van = VanFactory.buildvan("CA Phi", "opel", "O", 2012, "fosidfh",19,"petrol",true,image);
         assertNotNull(van);
-        Customer customer = CustomerFactory.buildCustomer(1L,"Philani","Shange","phianishange@gmail.com","12345","0736332825");
+        Customer customer = CustomerFactory.buildCustomer("Philani","Shange","phianishange@gmail.com","12345","0736332825");
         assertNotNull(customer);
 
         LocalDate startDate = LocalDate.of(2012,1,1);

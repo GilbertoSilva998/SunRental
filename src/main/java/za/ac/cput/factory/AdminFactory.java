@@ -15,6 +15,7 @@ public class AdminFactory {
             throw new IllegalArgumentException("Invalid email format");
         }
 
+
         return new Admin.Builder()
                 .setFirstName(firstName)
                 .setLastName(lastName)
