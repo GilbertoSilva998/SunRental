@@ -94,10 +94,7 @@ public class Customer {
         private String password;
         private String contactNumber;
 
-        public Builder SetId(Long id) {
-            this.id = id;
-            return this;
-        }
+
         public Builder SetFirstName(String firstName) {
             this.firstName = firstName;
             return this;

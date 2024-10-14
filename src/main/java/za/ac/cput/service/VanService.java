@@ -35,6 +35,8 @@ public class VanService implements IVanService{
         return repository.save(van);
     }
 
+
+
     @Transactional
     public void deleteById(String licensePlate){
         repository.deleteByLicensePlate(licensePlate);
