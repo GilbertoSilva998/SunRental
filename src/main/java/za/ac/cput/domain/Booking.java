@@ -1,19 +1,18 @@
 package za.ac.cput.domain;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+
 @Entity
 public class Booking implements Serializable {
     @Id
-    private String bookingID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long bookingID;
     private LocalDate startDate;
     private LocalDate endDate;
     private double totalPrice;
@@ -29,7 +28,6 @@ public class Booking implements Serializable {
     protected Booking() {}
 
     public Booking(Builder builder) {
-        this.bookingID = builder.bookingID;
         this.startDate = builder.startDate;
         this.endDate = builder.endDate;
         this.totalPrice = builder.totalPrice;
@@ -37,7 +35,7 @@ public class Booking implements Serializable {
         this.customer = builder.customer;
     }
 
-    public String getBookingID() {
+    public Long getBookingID() {
         return bookingID;
     }
 
@@ -61,6 +59,9 @@ public class Booking implements Serializable {
         return customer;
     }
 
+
+
+
     //HasCode
 
     @Override
@@ -76,13 +77,12 @@ public class Booking implements Serializable {
         return Objects.hash(bookingID, startDate, endDate, totalPrice, van, customer);
     }
 
-    //To String
 
 
     @Override
     public String toString() {
         return "Booking{" +
-                "bookingID='" + bookingID + '\'' +
+                "bookingID='" +  bookingID + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", totalPrice=" + totalPrice +
@@ -91,18 +91,16 @@ public class Booking implements Serializable {
                 '}';
     }
 
+
+
+
     public static class Builder {
-        private String bookingID;
         private LocalDate startDate;
         private LocalDate endDate;
         private double totalPrice;
         private Van van;
         private Customer customer;
 
-        public Builder setBookingID(String bookingID) {
-            this.bookingID = bookingID;
-            return this;
-        }
 
         public Builder setStartDate(LocalDate startDate) {
             this.startDate = startDate;
@@ -130,7 +128,6 @@ public class Booking implements Serializable {
         }
 
         public Builder copy(Booking booking) {
-            this.bookingID = booking.bookingID;
             this.startDate = booking.startDate;
             this.endDate = booking.endDate;
             this.totalPrice = booking.totalPrice;

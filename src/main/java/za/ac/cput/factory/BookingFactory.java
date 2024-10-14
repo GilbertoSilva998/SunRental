@@ -23,7 +23,6 @@ if (Helper.isNullorEmpty(bookingID) ||
     return null;
 
 return new Booking.Builder()
-        .setBookingID(bookingID)
         .setStartDate(startDate)
         .setEndDate(endDate)
         .setTotalPrice(totalPrice)
