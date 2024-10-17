@@ -10,7 +10,6 @@ class ContactMessageFactoryTest {
     @Test
     void buildContactMessageSuccess() {
         ContactMessage contactMessage = ContactMessageFactory.buildContactMessage(
-                null,
                 "Khayelitsha",
                 "Kupo",
                 "Maja",
@@ -31,7 +30,6 @@ class ContactMessageFactoryTest {
     @Test
     void buildContactMessageFailure() {
         ContactMessage contactMessage = ContactMessageFactory.buildContactMessage(
-                null,
                 "Bellville",
                 "Kupo",
                 "Maja",
