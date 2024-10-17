@@ -5,8 +5,7 @@ import za.ac.cput.util.Helper;
 
 public class CustomerFactory {
 
-    public static Customer buildCustomer(Long id,
-                                         String firstName,
+    public static Customer buildCustomer(String firstName,
                                          String lastName,
                                          String email,
                                          String password,
@@ -18,7 +17,6 @@ public class CustomerFactory {
         }
 
         return new Customer.Builder()
-                .SetId(id)
                 .SetFirstName(firstName)
                 .SetLastName(lastName)
                 .SetEmail(email)

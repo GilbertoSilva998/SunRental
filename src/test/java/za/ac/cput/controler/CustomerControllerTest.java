@@ -33,7 +33,7 @@ public class CustomerControllerTest {
     @BeforeEach
     void setup() {
         baseUrl = "http://localhost:" + port + "/customers";
-        customer = CustomerFactory.buildCustomer(1L, "Kelly", "Khoza", "kelly123@gmail.com", "password123", "0712345678");
+        customer = CustomerFactory.buildCustomer( "Kelly", "Khoza", "kelly123@gmail.com", "password123", "0712345678");
     }
 
     @Test

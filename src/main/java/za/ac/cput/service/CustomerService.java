@@ -2,6 +2,7 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.ac.cput.domain.Admin;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.repository.CustomerRepository;
 
@@ -31,26 +32,17 @@ public class CustomerService implements ICustomerService {
         return repository.save(customer);
     }
 
-    @Override
-    public Customer findByEmail(String email) {
-        return repository.findByEmail(email);
+
+    public Customer findByEmailAndPassword(String email, String password) {
+        return repository.findByEmailAndPassword(email, password);
     }
 
-
-
-
-    public Customer register(Customer customer) {
-        if (repository.findByEmail(customer.getEmail()) != null) {
-            throw new IllegalArgumentException("Email already registered");
-        }
-        return repository.save(customer);
-    }
-
-    public Customer login(String email, String password) {
-        Customer customer = repository.findByEmail(email);
-        if (customer != null && customer.getPassword().equals(password)) {
-            return customer;
-        }
-        throw new IllegalArgumentException("Invalid email or password");
-    }
+//
+//    public Customer (String email, String password) {
+//        Customer customer = repository.findByEmailAndPassword(email, password);
+//        if (customer != null && customer.getPassword().equals(password)) {
+//            return customer;
+//        }
+//        throw new IllegalArgumentException("Invalid email or password");
+//    }
 }
