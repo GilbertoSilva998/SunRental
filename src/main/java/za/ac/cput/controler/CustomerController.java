@@ -10,6 +10,7 @@ import za.ac.cput.service.CustomerService;
 
 @RestController
 @RequestMapping("/customers")
+@CrossOrigin("http://localhost:8080")
 public class CustomerController {
 
     private final CustomerService customerService;

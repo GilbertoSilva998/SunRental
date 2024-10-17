@@ -4,9 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+
 import java.util.Objects;
 
 
+@Getter
 @Entity
 public class Admin {
     @Id
@@ -17,6 +20,7 @@ public class Admin {
     private String email;
     private String password;
     private String confirmPassword;
+    private String role  = "ADMIN";     //setting my default role, so that it stays like this
 
     protected Admin(){
     }
@@ -28,30 +32,7 @@ public class Admin {
         this.email = builder.email;
         this.password = builder.password;
         this.confirmPassword = builder.confirmPassword;
-    }
-
-    public long getAdminId() {
-        return adminId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
+        this.role = builder.role;
     }
 
     @Override
@@ -59,12 +40,18 @@ public class Admin {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Admin admin = (Admin) o;
-        return adminId == admin.adminId && Objects.equals(firstName, admin.firstName) && Objects.equals(lastName, admin.lastName) && Objects.equals(email, admin.email) && Objects.equals(password, admin.password) && Objects.equals(confirmPassword, admin.confirmPassword);
+        return adminId == admin.adminId &&
+                Objects.equals(firstName, admin.firstName) &&
+                Objects.equals(lastName, admin.lastName) &&
+                Objects.equals(email, admin.email) &&
+                Objects.equals(password, admin.password) &&
+                Objects.equals(confirmPassword, admin.confirmPassword) &&
+                Objects.equals(role, admin.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(adminId, firstName, lastName,email, password, confirmPassword);
+        return Objects.hash(adminId, firstName, lastName,email, password, confirmPassword, role);
     }
 
     @Override
@@ -76,6 +63,7 @@ public class Admin {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 
@@ -87,6 +75,7 @@ public class Admin {
         private String email;
         private String password;
         private String confirmPassword;
+        private String role;
 
         public Builder setAdminId(long adminId) {
             this.adminId = adminId;
@@ -119,13 +108,19 @@ public class Admin {
             return this;
         }
 
-        public Builder copy(Admin admin){
+        public Builder setRole(String role) {
+            this.role = role;
+            return this;
+        }
+
+        public Builder copy(Admin admin) {
             this.adminId = admin.adminId;
             this.firstName = admin.firstName;
             this.lastName = admin.lastName;
             this.email = admin.email;
             this.password = admin.password;
             this.confirmPassword = admin.confirmPassword;
+            this.role = admin.role;
             return this;
         }
 
