@@ -4,55 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4243f2fa-1ef2-4f9d-9696-15b6ad1f8f49" name="Changes" comment="Contact Us fully functionality">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/security/JwtFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/security/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/JWTService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/MyAdminDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/BookingController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/ContactMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/ContactMessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/VanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/VanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Booking.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/AdminFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/AdminFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/BookingFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/AdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/AdminRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/BookingRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/BookingService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/IAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/IAdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/IBookingService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/webConfig/WebConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/BookingFactoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/controler/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/controler/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/controler/VanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/controler/VanController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Admin$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Admin$Builder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Van$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Van$Builder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Van.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Van.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/factory/AdminFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/factory/AdminFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/repository/AdminRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/repository/AdminRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/service/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/service/AdminService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/service/VanService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/service/VanService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/za/ac/cput/controler/ContactMessageControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/za/ac/cput/controler/ContactMessageControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/za/ac/cput/controler/VanControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/za/ac/cput/controler/VanControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/za/ac/cput/factory/ContactMessageFactoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/za/ac/cput/factory/ContactMessageFactoryTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/za/ac/cput/factory/VanFactoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/za/ac/cput/factory/VanFactoryTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/za/ac/cput/service/ContactMessageServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/za/ac/cput/service/ContactMessageServiceTest.class" afterDir="false" />
+    <list default="true" id="4243f2fa-1ef2-4f9d-9696-15b6ad1f8f49" name="Changes" comment="Security implementation for an Admin">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +221,7 @@
       <workItem from="1728348160073" duration="18359000" />
       <workItem from="1728850625337" duration="2487000" />
       <workItem from="1728950946037" duration="79035000" />
-      <workItem from="1729195513903" duration="1085000" />
+      <workItem from="1729195513903" duration="2218000" />
     </task>
     <task id="LOCAL-00001" summary="ContactMessage update">
       <option name="closed" value="true" />
@@ -310,7 +263,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725053624399</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Security implementation for an Admin">
+      <option name="closed" value="true" />
+      <created>1729196772037</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729196772037</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Security implementation for an Admin">
+      <option name="closed" value="true" />
+      <created>1729196876896</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729196876896</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +289,8 @@
     <MESSAGE value="ContactMessage update" />
     <MESSAGE value="Admin functionality" />
     <MESSAGE value="Admin functionality fully updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Admin functionality fully updated" />
+    <MESSAGE value="Security implementation for an Admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Security implementation for an Admin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
