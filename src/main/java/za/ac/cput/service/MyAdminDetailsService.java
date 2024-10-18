@@ -12,19 +12,17 @@ import za.ac.cput.repository.AdminRepository;
 @Service
 public class MyAdminDetailsService implements UserDetailsService {
     @Autowired
-    private AdminRepository adminRepository;
+    private AdminRepository adminRepository; // Assuming you're using a repository to fetch admin data
 
-    public MyAdminDetailsService() {
-    }
-
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Admin admin = this.adminRepository.findByEmail(username);
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Admin admin = adminRepository.findByEmail(email);
         if (admin == null) {
-            System.out.println("User Not Found");
-            throw new UsernameNotFoundException("user not found");
-        } else {
-            return new AdminPrincipal(admin);
+            throw new UsernameNotFoundException("Admin not found with email: " + email);
         }
+        System.out.println("Found admin: " + admin.getEmail()); // Log the found admin
+        return new AdminPrincipal(admin);
     }
 
 }
+

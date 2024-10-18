@@ -5,7 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4243f2fa-1ef2-4f9d-9696-15b6ad1f8f49" name="Changes" comment="Security implementation for an Admin">
+      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/SecretKeyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controler/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/security/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/security/JwtFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/JWTService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/JWTService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/MyAdminDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/MyAdminDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/controler/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/controler/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/controler/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/controler/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Admin$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Admin$Builder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Customer$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Customer$Builder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/domain/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/factory/AdminFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/factory/AdminFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/factory/CustomerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/factory/CustomerFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/repository/CustomerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/repository/CustomerRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/security/JwtFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/security/JwtFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/security/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/security/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/service/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/service/AdminService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/service/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/service/CustomerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/service/ICustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/service/ICustomerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/service/JWTService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/service/JWTService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/service/MyAdminDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/service/MyAdminDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/za/ac/cput/service/VanService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/za/ac/cput/service/VanService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/za/ac/cput/controler/CustomerControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/za/ac/cput/controler/CustomerControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/za/ac/cput/factory/CustomerFactoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/za/ac/cput/factory/CustomerFactoryTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/za/ac/cput/service/CustomerServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/za/ac/cput/service/CustomerServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +255,8 @@
       <workItem from="1728348160073" duration="18359000" />
       <workItem from="1728850625337" duration="2487000" />
       <workItem from="1728950946037" duration="79035000" />
-      <workItem from="1729195513903" duration="2218000" />
+      <workItem from="1729195513903" duration="16427000" />
+      <workItem from="1729259127801" duration="12307000" />
     </task>
     <task id="LOCAL-00001" summary="ContactMessage update">
       <option name="closed" value="true" />
@@ -279,7 +314,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729196876896</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Security implementation for an Admin">
+      <option name="closed" value="true" />
+      <created>1729197860823</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1729197860823</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
