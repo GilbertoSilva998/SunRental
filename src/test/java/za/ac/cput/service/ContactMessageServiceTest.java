@@ -22,7 +22,7 @@ class ContactMessageServiceTest {
     @BeforeEach
     void setUp() {
         message = ContactMessageFactory.buildContactMessage(
-                null, "Khayelitsha", "Paulose", "Maja", "073 828 8378",
+                "Khayelitsha", "Paulose", "Maja", "073 828 8378",
                 "paulosemaja14@gmail.com", "paulosemaja14@gmail.com",
                 "The booking button is not working on my side."
         );
@@ -35,7 +35,7 @@ class ContactMessageServiceTest {
         assertNotNull(created);
         message = new ContactMessage.Builder()
                 .copy(created)
-                .build(); // Updated to use the created message object directly
+                .build();
         System.out.println(created);
     }
 

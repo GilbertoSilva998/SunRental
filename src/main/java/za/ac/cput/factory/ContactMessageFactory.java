@@ -6,7 +6,6 @@ import za.ac.cput.util.Helper;
 public class ContactMessageFactory {
 
     public static ContactMessage buildContactMessage(
-            Long messageId,
             String branch,
             String firstName,
             String lastName,

@@ -22,6 +22,7 @@ public class AdminFactory {
                 .setEmail(email)
                 .setPassword(password)
                 .setConfirmPassword(confirmPassword)
+                .setRole("ADMIN")
                 .build();
     }
 }

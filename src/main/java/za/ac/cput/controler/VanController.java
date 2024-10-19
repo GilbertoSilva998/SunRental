@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/van")
-@CrossOrigin("http://localhost:8081")
+@CrossOrigin("http://localhost:8080")
 public class VanController {
     private final VanService service;
 

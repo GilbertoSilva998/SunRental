@@ -1,34 +1,52 @@
 package za.ac.cput.controler;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Admin;
 import za.ac.cput.service.AdminService;
-
 import java.util.List;
+
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins = "http://localhost:8081") // use 8088 when testing with Postman
+@CrossOrigin(origins = "http://localhost:8081")
 public class AdminController {
+
     private final AdminService service;
 
     @Autowired
-    public AdminController(AdminService adminService) {
+    public AdminController(@Lazy AdminService adminService) {
         this.service = adminService;
+
     }
 
-    // ADDING AN ADMIN
     @PostMapping("/create")
-    public Admin addAdmin(@RequestBody Admin admin) {
-        return service.create(admin);
+    public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin) {
+        Admin createdAdmin = service.create(admin);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdAdmin);
     }
 
-    // RETRIEVE ADMIN DETAILS BY ID
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Admin admin) {
+        try {
+            // Authenticate the admin and generate a JWT token
+            String token = service.verify(admin);
+            return ResponseEntity.ok(token); // Return the JWT token
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password.");
+        }
+    }
+
     @GetMapping("/read/{id}")
-    public Admin read(@PathVariable Long id) {
-        return service.read(id);
+    public ResponseEntity<Admin> read(@PathVariable Long id) {
+        Admin admin = service.read(id);
+        if (admin != null) {
+            return ResponseEntity.ok(admin);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @PutMapping("/update")
@@ -51,14 +69,9 @@ public class AdminController {
         }
     }
 
-    // GET ALL ADMINS
     @GetMapping("/allAdmins")
-    public List<Admin> getAll() {
-        return service.getAll();
-    }
-
-    @PostMapping("/login")
-    public Admin login(@RequestParam String email, @RequestParam String password) {
-        return service.findByEmailAndPassword(email, password);
+    public ResponseEntity<List<Admin>> getAll() {
+        List<Admin> admins = service.getAll();
+        return ResponseEntity.ok(admins);
     }
 }
