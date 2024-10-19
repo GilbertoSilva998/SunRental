@@ -31,6 +31,7 @@ class VanControllerTest {
                                   16,
                                   "Diesel",
                                   true,
+                                   1500,
                                    image);
         System.out.println(van);
     }

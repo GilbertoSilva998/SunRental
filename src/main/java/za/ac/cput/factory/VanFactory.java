@@ -12,6 +12,7 @@ public class VanFactory {
                                int capacity,
                                String fuelType,
                                boolean rentalStatus,
+                               int price,
                                byte[] image){
 
         if (Helper.isNullorEmpty(licensePlate)||
@@ -20,7 +21,9 @@ public class VanFactory {
                 year==0 ||
                 Helper.isNullorEmpty(vin) ||
                 capacity == 0 ||
-                Helper.isNullorEmpty(fuelType))
+                Helper.isNullorEmpty(fuelType) ||
+                price <0
+        )
             return null;
 
         if (image == null)
@@ -35,6 +38,7 @@ public class VanFactory {
                 .setCapacity(capacity)
                 .setFuelType(fuelType)
                 .setRentalStatus(rentalStatus)
+                .setPrice(price)
                 .setImage(image)
                 .build();
 
