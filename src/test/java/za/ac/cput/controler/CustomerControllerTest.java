@@ -49,7 +49,6 @@ public class CustomerControllerTest {
 
     @Test
     void read() {
-
         ResponseEntity<Customer> response = restTemplate.getForEntity("/customers/read/{id}", Customer.class, customer.getId());
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());

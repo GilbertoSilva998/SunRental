@@ -86,27 +86,26 @@ public class CustomerService implements ICustomerService {
 
     public String verify(@NotNull Customer customer) {
         try {
-            // Log the incoming email for debugging
+
             System.out.println("Attempting authentication for email: " + customer.getEmail());
 
-            // Perform authentication based on customer's email and password
+
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(customer.getEmail(), customer.getPassword())
             );
 
-            // Log the result of the authentication check
+
             System.out.println("Authentication status: " + authentication.isAuthenticated());
 
-            // Check if authentication was successful
+
             if (authentication.isAuthenticated()) {
                 System.out.println("Authentication successful for user: " + customer.getEmail());
 
-                // Generate JWT token with the customer's email and role
                 String token = jwtService.generateToken(customer.getEmail(), customer.getRole());
 
                 if (token != null && !token.isEmpty()) {
                     System.out.println("Generated Token: " + token); // Log the token for debugging
-                    return token;  // Return the token
+                    return token;
                 } else {
                     System.out.println("Token generation failed.");
                 }
@@ -114,15 +113,15 @@ public class CustomerService implements ICustomerService {
                 System.out.println("Authentication failed for unknown reasons.");
             }
         } catch (AuthenticationException e) {
-            // Log the error message if authentication fails
+
             System.out.println("Authentication failed: " + e.getMessage());
         } catch (Exception e) {
-            // Catch any other exceptions and log them
+
             System.out.println("An unexpected error occurred: " + e.getMessage());
             e.printStackTrace();
         }
 
-        // Return 'fail' if authentication or token generation fails
+
         return "fail";
     }
 

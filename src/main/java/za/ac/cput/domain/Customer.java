@@ -33,7 +33,7 @@ public class Customer {
 
     }
 
-
+ //getters
     public Long getId() {
         return id;
     }

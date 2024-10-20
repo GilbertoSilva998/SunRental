@@ -54,15 +54,6 @@ public class CustomerServiceTest {
         assertEquals("Ntsako", updated.getFirstName());
         System.out.println("Updated: " + updated);
     }
-//
-//    @Test
-//    @Order(5)
-//    @Disabled
-//    void delete() {
-//        customerService.delete(admin.getAdminId());
-//        assertNull(adminService.read(admin.getAdminId())); // the admin is deleted
-//        System.out.println("Success: Deleted the admin!");
-//    }
 
 
 

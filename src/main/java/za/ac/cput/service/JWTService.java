@@ -145,7 +145,7 @@ public class JWTService {
         } catch (Exception e) {
             System.err.println("Error generating token: " + e.getMessage());
             e.printStackTrace();
-            throw e; // Optionally rethrow the exception
+            throw e;
         }
     }
 
@@ -161,7 +161,7 @@ public class JWTService {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .setSigningKey(secretKeyManager.getKey()) // Use the SecretKey from SecretKeyManager
+                .setSigningKey(secretKeyManager.getKey())
                 .parseClaimsJws(token)
                 .getBody();
     }

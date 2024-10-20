@@ -10,7 +10,7 @@ import za.ac.cput.repository.CustomerRepository;
 
 public class MyCustomerService implements UserDetailsService {
     @Autowired
-    private CustomerRepository customerRepository; // Assuming you're using a repository to fetch admin data
+    private CustomerRepository customerRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
