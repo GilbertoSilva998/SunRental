@@ -11,8 +11,7 @@ public class CustomerFactory {
                                          String password,
                                          String contactNumber) {
 
-        if (Helper.isNullorEmpty(firstName) || Helper.isNullorEmpty(lastName) || !Helper.isValidEmail(email)
-                || Helper.isNullorEmpty(password) || Helper.isNullorEmpty(contactNumber)) {
+        if (Helper.isNullorEmpty(firstName) || Helper.isNullorEmpty(lastName) || !Helper.isValidEmail(email) || Helper.isNullorEmpty(password) || Helper.isNullorEmpty(contactNumber)) {
             return null;
         }
 
@@ -22,6 +21,7 @@ public class CustomerFactory {
                 .SetEmail(email)
                 .SetPassword(password)
                 .SetContactNumber(contactNumber)
+                .SetRole("USER")
                 .build();
     }
 }

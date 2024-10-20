@@ -17,6 +17,7 @@ public class Customer {
     private String email;
     private String password;
     private String contactNumber;
+    private String role  = "USER";
 
 
     protected Customer() {}
@@ -28,10 +29,11 @@ public class Customer {
         this.email = builder.email;
         this.password = builder.password;
         this.contactNumber = builder.contactNumber;
+        this.role = builder.role;
 
     }
 
-
+ //getters
     public Long getId() {
         return id;
     }
@@ -56,6 +58,8 @@ public class Customer {
         return contactNumber;
     }
 
+    public String getRole() {return role;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,12 +70,13 @@ public class Customer {
                 Objects.equals(lastName, customer.lastName) &&
                 Objects.equals(email, customer.email) &&
                 Objects.equals(password, customer.password) &&
-                Objects.equals(contactNumber, customer.contactNumber);
+                Objects.equals(contactNumber, customer.contactNumber) &&
+                Objects.equals(role, customer.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, password, contactNumber);
+        return Objects.hash(id, firstName, lastName, email, password, contactNumber, role);
     }
 
     @Override
@@ -83,6 +88,7 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", contactNumber='" + contactNumber + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 
@@ -93,7 +99,13 @@ public class Customer {
         private String email;
         private String password;
         private String contactNumber;
+        private String role;
 
+
+        public Builder setId(Long id) {
+            this.id = id;
+            return this;
+        }
 
         public Builder SetFirstName(String firstName) {
             this.firstName = firstName;
@@ -115,6 +127,10 @@ public class Customer {
             this.contactNumber = contactNumber;
             return this;
         }
+        public Builder SetRole(String role) {
+            this.role = role;
+            return this;
+        }
 
         public Builder copy(Customer customer) {
             this.id = customer.id;
@@ -123,6 +139,7 @@ public class Customer {
             this.email = customer.email;
             this.password = customer.password;
             this.contactNumber = customer.contactNumber;
+            this.role = customer.role;
             return this;
         }
 

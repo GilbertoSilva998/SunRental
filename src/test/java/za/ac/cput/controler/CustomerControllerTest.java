@@ -49,18 +49,13 @@ public class CustomerControllerTest {
 
     @Test
     void read() {
-
-        String createUrl = baseUrl + "/create";
-        restTemplate.postForEntity(createUrl, customer, Customer.class);
-
-        String readUrl = baseUrl + "/read/" + customer.getId();
-        ResponseEntity<Customer> response = restTemplate.getForEntity(readUrl, Customer.class);
-        assertNotNull(response);
+        ResponseEntity<Customer> response = restTemplate.getForEntity("/customers/read/{id}", Customer.class, customer.getId());
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertEquals(customer.getId(), response.getBody().getId());
-        System.out.println("Read: " + response.getBody());
+        assertEquals("Kelly", response.getBody().getFirstName());
+
     }
+
 
     @Test
     void update() {

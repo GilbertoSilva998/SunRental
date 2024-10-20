@@ -32,10 +32,10 @@ public class AdminService implements IAdminService {
 
     @Override
     public Admin create(Admin admin) {
-        // Encrypt the password before saving the admin
+
         String encodedPassword = passwordEncoder.encode(admin.getPassword());
 
-        // Use the builder to set the encrypted password and default roles along with other fields
+
         Admin newAdmin = new Admin.Builder()
                 .setAdminId(admin.getAdminId())
                 .setFirstName(admin.getFirstName())
@@ -43,7 +43,7 @@ public class AdminService implements IAdminService {
                 .setEmail(admin.getEmail())
                 .setPassword(encodedPassword)
                 .setConfirmPassword(encodedPassword)
-                .setRole("ADMIN") // Set the default role for the admin
+                .setRole("ADMIN")
                 .build();
 
         return repository.save(newAdmin);
@@ -56,12 +56,12 @@ public class AdminService implements IAdminService {
 
     @Override
     public Admin update(Admin admin) {
-        // Check if the admin exists before updating
+
         if (repository.existsById(admin.getAdminId())) {
             String currentPassword = repository.findById(admin.getAdminId()).get().getPassword();
             String currentConfirmPassword = repository.findById(admin.getAdminId()).get().getConfirmPassword();
 
-            // Encrypt the password only if it has been changed
+
             String newPassword = admin.getPassword().equals(currentPassword) ?
                     currentPassword : passwordEncoder.encode(admin.getPassword());
 
@@ -97,23 +97,30 @@ public class AdminService implements IAdminService {
 
     public String verify(Admin admin) {
         try {
-            // Log the incoming email and password
+
             System.out.println("Attempting authentication for email: " + admin.getEmail());
+
+
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(admin.getEmail(), admin.getPassword()));
+                    new UsernamePasswordAuthenticationToken(admin.getEmail(), admin.getPassword())
+            );
+
 
             if (authentication.isAuthenticated()) {
                 System.out.println("Authentication successful for user: " + admin.getEmail());
 
-                // Validate that the email is correct before generating the token
-                String token = jwtService.generateToken(admin.getEmail());
+
+                String token = jwtService.generateToken(admin.getEmail(), admin.getRole());
                 System.out.println("Generated Token: " + token); // Print the generated token
-                return token;
+                return token;  // Return the generated token
             }
         } catch (AuthenticationException e) {
+
             System.out.println("Authentication failed: " + e.getMessage());
         }
 
+
         return "fail";
     }
+
 }

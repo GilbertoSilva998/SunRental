@@ -122,12 +122,14 @@ public class JWTService {
         this.secretKeyManager = new SecretKeyManager();
     }
 
-    public String generateToken(String username) {
+    public String generateToken(String username, String role) {
         if (username == null || username.isEmpty()) {
             throw new IllegalArgumentException("Username cannot be null or empty");
         }
 
+        // Set claims including the role
         Map<String, Object> claims = new HashMap<>();
+        claims.put("role", role);  // Add the role to claims
 
         try {
             String token = Jwts.builder()
@@ -143,9 +145,10 @@ public class JWTService {
         } catch (Exception e) {
             System.err.println("Error generating token: " + e.getMessage());
             e.printStackTrace();
-            throw e; // Optionally rethrow the exception
+            throw e;
         }
     }
+
 
     public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -158,7 +161,7 @@ public class JWTService {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .setSigningKey(secretKeyManager.getKey()) // Use the SecretKey from SecretKeyManager
+                .setSigningKey(secretKeyManager.getKey())
                 .parseClaimsJws(token)
                 .getBody();
     }
@@ -175,4 +178,9 @@ public class JWTService {
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
+
+    public String extractUserRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class));
+    }
+
 }
