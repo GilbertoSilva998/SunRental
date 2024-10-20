@@ -22,6 +22,7 @@ public class CustomerFactory {
                 .SetEmail(email)
                 .SetPassword(password)
                 .SetContactNumber(contactNumber)
+                .SetRole("USER")
                 .build();
     }
 }

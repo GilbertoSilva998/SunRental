@@ -97,23 +97,30 @@ public class AdminService implements IAdminService {
 
     public String verify(Admin admin) {
         try {
-            // Log the incoming email and password
+            // Log the incoming email and password for debugging
             System.out.println("Attempting authentication for email: " + admin.getEmail());
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(admin.getEmail(), admin.getPassword()));
 
+            // Perform authentication
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(admin.getEmail(), admin.getPassword())
+            );
+
+            // Check if authentication was successful
             if (authentication.isAuthenticated()) {
                 System.out.println("Authentication successful for user: " + admin.getEmail());
 
-                // Validate that the email is correct before generating the token
-                String token = jwtService.generateToken(admin.getEmail());
+                // Generate a JWT token with the admin's email and role
+                String token = jwtService.generateToken(admin.getEmail(), admin.getRole());
                 System.out.println("Generated Token: " + token); // Print the generated token
-                return token;
+                return token;  // Return the generated token
             }
         } catch (AuthenticationException e) {
+            // Log the error message if authentication fails
             System.out.println("Authentication failed: " + e.getMessage());
         }
 
+        // Return 'fail' if authentication fails
         return "fail";
     }
+
 }

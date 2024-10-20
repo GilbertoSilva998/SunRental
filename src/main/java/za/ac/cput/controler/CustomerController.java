@@ -27,20 +27,17 @@ public class CustomerController {
         return new ResponseEntity<>(createdCustomer, HttpStatus.CREATED);
     }
 
-//    @PostMapping("/create")
-//    public Customer addCustomer(@RequestBody Customer customer) {
-//        return customerService.create(customer);
-//    }
 
     @GetMapping("/read/{id}")
     public ResponseEntity<Customer> read(@PathVariable Long id) {
         Customer customer = customerService.read(id);
         if (customer != null) {
-            return new ResponseEntity<>(customer, HttpStatus.OK);
+            return  ResponseEntity.ok(customer);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
 
     @PutMapping("/update")
     public ResponseEntity<Customer> update(@RequestBody Customer customer) {
@@ -51,20 +48,16 @@ public class CustomerController {
         return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
     }
 
-    @GetMapping("/findByEmail/{email}")
-    public ResponseEntity<Customer> findByEmailAndPassword(@PathVariable String email, String password) {
-        Customer customer = customerService.findByEmailAndPassword(email, password);
-        if (customer != null) {
-            return new ResponseEntity<>(customer, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Customer customer) {
+        try {
+            String token = customerService.verify(customer);
+            return ResponseEntity.ok(token);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password.");
         }
     }
 
-
-    @PostMapping("/login")
-    public Customer login(@RequestParam String email, @RequestParam String password) {
-        return customerService.findByEmailAndPassword(email, password);
-    }
 
 }
