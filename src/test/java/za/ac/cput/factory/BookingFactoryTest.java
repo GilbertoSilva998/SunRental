@@ -19,7 +19,7 @@ class BookingFactoryTest {
     @BeforeAll
     public static void setUp() {
         van = VanFactory.buildvan(
-                "CA9000", "Toyota", "Quantum", 2025, "Q125", 16, "Diesel", true, new byte[0]
+                "CA9000", "Toyota", "Quantum", 2025, "Q125", 16, "Diesel", true, 1500,  new byte[0]
         );
         customer = CustomerFactory.buildCustomer(
                 "CUST001", "John", "Doe", "073 123 4567", "john.doe@example.com"
