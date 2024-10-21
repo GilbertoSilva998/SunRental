@@ -1,7 +1,6 @@
 package za.ac.cput.domain;
 
 import jakarta.persistence.*;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
@@ -27,6 +26,8 @@ public class Van implements Serializable {
 
     private boolean rentalStatus;
 
+    private int price;
+
     @Lob
     @Column(length = 100000)
     private byte[] image;
@@ -43,6 +44,7 @@ public class Van implements Serializable {
         this.capacity = builder.capacity;
         this.fuelType = builder.fuelType;
         this.rentalStatus = builder.rentalStatus;
+        this.price = builder.price;
         this.image = builder.image;
     }
 
@@ -78,6 +80,10 @@ public class Van implements Serializable {
         return rentalStatus;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public byte[] getImage() {
         return image;
     }
@@ -85,22 +91,22 @@ public class Van implements Serializable {
     //Has Code
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Van van = (Van) o;
-        return year == van.year && capacity == van.capacity && rentalStatus == van.rentalStatus && Objects.equals(licensePlate, van.licensePlate) && Objects.equals(make, van.make) && Objects.equals(model, van.model) && Objects.equals(vin, van.vin) && Objects.equals(fuelType, van.fuelType) && Arrays.equals(image, van.image);
+        return year == van.year && capacity == van.capacity && rentalStatus == van.rentalStatus && price == van.price && Objects.equals(licensePlate, van.licensePlate) && Objects.equals(make, van.make) && Objects.equals(model, van.model) && Objects.equals(vin, van.vin) && Objects.equals(fuelType, van.fuelType) && Arrays.equals(image, van.image);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(licensePlate, make, model, year, vin, capacity, fuelType, rentalStatus);
+        int result = Objects.hash(licensePlate, make, model, year, vin, capacity, fuelType, rentalStatus, price);
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
 
-
     //ToString
+
+
     @Override
     public String toString() {
         return "Van{" +
@@ -112,6 +118,7 @@ public class Van implements Serializable {
                 ", capacity=" + capacity +
                 ", fuelType='" + fuelType + '\'' +
                 ", rentalStatus=" + rentalStatus +
+                ", price=" + price +
                 ", image=" + Arrays.toString(image) +
                 '}';
     }
@@ -126,6 +133,7 @@ public class Van implements Serializable {
         private int capacity;
         private String fuelType;
         private boolean rentalStatus;
+        private int price;
         private byte[] image;
 
 
@@ -165,6 +173,11 @@ public class Van implements Serializable {
 
         public Builder setRentalStatus(boolean rentalStatus) {
             this.rentalStatus = rentalStatus;
+            return this;
+        }
+
+        public Builder setPrice(int price) {
+            this.price = price;
             return this;
         }
 

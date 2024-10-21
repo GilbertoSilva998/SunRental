@@ -11,7 +11,7 @@ class VanFactoryTest {
     void testBuildVan(){
         byte[] image = new byte[0];
         Van van = VanFactory.buildvan("CA 8080","Toyota","Quantum",2014,
-                "CA1234",6,"Diesel",true, image);
+                "CA1234",6,"Diesel",true, 1500,  image);
         assertNotNull(van);
 
         System.out.println(van);
@@ -19,7 +19,7 @@ class VanFactoryTest {
 
     @Test
     void testBuildCarWithFail(){
-        Van c = VanFactory.buildvan("","","",0,"",0,"",false, "".getBytes());
+        Van c = VanFactory.buildvan("","","",0,"",0,"",false, 0, "".getBytes());
         assertNotNull(c);
 
         System.out.println(c.toString());

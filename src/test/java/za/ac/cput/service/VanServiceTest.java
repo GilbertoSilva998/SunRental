@@ -24,6 +24,7 @@ class VanServiceTest {
                                          6,
                                          "Hybrid-Diesel",
                                          true,
+                                         3000,
                                          image);
 
     @Test
