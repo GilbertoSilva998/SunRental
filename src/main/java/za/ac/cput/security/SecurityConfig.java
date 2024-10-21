@@ -16,31 +16,28 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+import za.ac.cput.service.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
+
     @Autowired
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
-    public SecurityConfig() {
-    }
-
-        @Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeRequests()
                 .requestMatchers("/admin/login", "/admin/create").permitAll()
-                .requestMatchers("/customers/login", "customers/create").permitAll()// Allow access to these endpoints without authentication
+                .requestMatchers("/customers/login", "/customers/create").permitAll() // Corrected the endpoint
                 .anyRequest().authenticated() // Protect all other endpoints
                 .and()
-              .httpBasic(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults())
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -50,8 +47,8 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
-        provider.setUserDetailsService(this.userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder()); // Use the passwordEncoder bean
+        provider.setUserDetailsService(customUserDetailsService); // Ensure userDetailsService is properly injected
         return provider;
     }
 
@@ -62,6 +59,6 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); // You can also specify strength here if needed
     }
 }
