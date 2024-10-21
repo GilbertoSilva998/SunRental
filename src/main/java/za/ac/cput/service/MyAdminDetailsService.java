@@ -12,7 +12,7 @@ import za.ac.cput.repository.AdminRepository;
 @Service
 public class MyAdminDetailsService implements UserDetailsService {
     @Autowired
-    private AdminRepository adminRepository; // Assuming you're using a repository to fetch admin data
+    private AdminRepository adminRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .requestMatchers("/admin/login", "/admin/create").permitAll()
-                .requestMatchers("/customer/login", "customers/create").permitAll()// Allow access to these endpoints without authentication
+                .requestMatchers("/customers/login", "customers/create").permitAll()// Allow access to these endpoints without authentication
                 .anyRequest().authenticated() // Protect all other endpoints
                 .and()
               .httpBasic(Customizer.withDefaults())
