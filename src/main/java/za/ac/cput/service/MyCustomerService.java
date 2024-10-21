@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.domain.CustomerPrincipal;
 import za.ac.cput.repository.CustomerRepository;
 
+@Service
 public class MyCustomerService implements UserDetailsService {
     @Autowired
     private CustomerRepository customerRepository;
@@ -21,4 +23,6 @@ public class MyCustomerService implements UserDetailsService {
         System.out.println("Found customer: " + customer.getEmail()); // Log the found admin
         return new CustomerPrincipal(customer);
     }
+
+
 }
