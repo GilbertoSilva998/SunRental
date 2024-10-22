@@ -92,6 +92,7 @@ public class Booking implements Serializable {
     }
 
     public void setCustomer(Customer customer) {
+
     }
 
 

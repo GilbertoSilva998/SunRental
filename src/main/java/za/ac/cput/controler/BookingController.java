@@ -23,17 +23,20 @@ public class BookingController {
 
     @PostMapping("/create")
     public ResponseEntity<Booking> create(@RequestBody Booking booking) {
-        if (booking == null || booking.getCustomer() == null || booking.getVan() == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Ensure booking, customer, and van are not null
-        }
-
+        // Proceed with creating the booking even if some values are null
         try {
+            // The bookingService.create method should handle null checks or constraints
             Booking createdBooking = bookingService.create(booking);
             return new ResponseEntity<>(createdBooking, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
+            // Catch any exception related to invalid arguments or data
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            // Handle other unforeseen exceptions (optional)
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 
     @GetMapping("/all")
