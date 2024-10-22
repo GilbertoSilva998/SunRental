@@ -9,6 +9,8 @@ import za.ac.cput.domain.Admin;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.service.CustomerService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/customers")
 @CrossOrigin("http://localhost:8081")
@@ -48,14 +50,36 @@ public class CustomerController {
         return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
     }
 
+    @GetMapping("/allCustomers")
+    public List<Customer> getAll (){
+        return customerService.getAll();
+    }
+
+    @GetMapping("/findByEmail")
+    public ResponseEntity<Customer> findByEmail(@RequestParam String email){
+        if (email == null || email.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        Customer customer = customerService.findByEmail(email);
+        if (customer != null){
+            return ResponseEntity.ok(customer);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Customer customer) {
         try {
             String token = customerService.verify(customer);
+            if ("fail".equals(token)){
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+            }
             return ResponseEntity.ok(token);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred. ");
         }
     }
 

@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.repository.CustomerRepository;
 
+import java.util.List;
+
 @Service
 public class CustomerService implements ICustomerService {
 
@@ -84,6 +86,16 @@ public class CustomerService implements ICustomerService {
 
     }
 
+    @Override
+    public Customer findByEmail(String email) {
+        return customerRepository.findByEmail(email);
+    }
+
+    @Override
+    public List<Customer> getAll() {
+        return customerRepository.findAll();
+    }
+
     public String verify(@NotNull Customer customer) {
         try {
 
@@ -119,12 +131,12 @@ public class CustomerService implements ICustomerService {
 
             System.out.println("An unexpected error occurred: " + e.getMessage());
             e.printStackTrace();
+            return "An error occurred during authentication. ";
         }
 
 
         return "fail";
     }
-
 
 
 
