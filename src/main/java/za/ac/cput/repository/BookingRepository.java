@@ -10,13 +10,12 @@ import java.util.List;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-    // Method to check if there are bookings for the same van that overlap the requested dates
-    List<Booking> findByVan_LicensePlateAndStartDateLessThanEqualAndEndDateGreaterThanEqual(
-            String vanLicensePlate, LocalDate endDate, LocalDate startDate);
+    // Method to find bookings for the same van that overlap with the requested dates
+    List<Booking> findByLicensePlateAndStartDateLessThanEqualAndEndDateGreaterThanEqual(
+            String licensePlate, LocalDate endDate, LocalDate startDate);
 
     // Default method for checking overlapping bookings
-    default List<Booking> findOverlappingBookings(String vanLicensePlate, LocalDate startDate, LocalDate endDate) {
-        // Call the query method with the correct logic for date overlap
-        return findByVan_LicensePlateAndStartDateLessThanEqualAndEndDateGreaterThanEqual(vanLicensePlate, endDate, startDate);
+    default List<Booking> findOverlappingBookings(String licensePlate, LocalDate startDate, LocalDate endDate) {
+        return findByLicensePlateAndStartDateLessThanEqualAndEndDateGreaterThanEqual(licensePlate, endDate, startDate);
     }
 }

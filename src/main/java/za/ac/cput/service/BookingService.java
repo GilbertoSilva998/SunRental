@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.Booking;
 import za.ac.cput.domain.Customer;
+import za.ac.cput.domain.Van;
 import za.ac.cput.repository.BookingRepository;
 import za.ac.cput.repository.CustomerRepository;
 import za.ac.cput.repository.VanRepository;
@@ -30,18 +31,20 @@ public class BookingService implements IBookingService {
     @Transactional
     @Override
     public Booking create(Booking booking) {
-        Optional<Customer> existingCustomer = Optional.ofNullable(customerRepository.findByEmail(booking.getCustomer().getEmail()));
+        // Check if the customer already exists using email
+        Optional<Customer> existingCustomer = Optional.ofNullable(customerRepository.findByEmail(booking.getCustomerEmail()));
 
-        if (existingCustomer.isPresent()) {
-            booking.setCustomer(existingCustomer.get());
-        } else {
-            customerRepository.save(booking.getCustomer());
+        // Fetch the Van based on license plate from the repository
+        Optional<Van> existingVan = vanRepository.findByLicensePlate(booking.getLicensePlate());
+        if (existingVan.isEmpty()) {
+            throw new IllegalArgumentException("Van with the given license plate does not exist.");
         }
 
+        // Optionally, you might want to add logic here to associate the booking with the existing customer
+
+        // Proceed with saving the booking
         return bookingRepository.save(booking);
     }
-
-
 
     @Override
     public Booking read(String bookingID) {

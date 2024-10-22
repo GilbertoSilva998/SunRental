@@ -1,8 +1,6 @@
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.Booking;
-import za.ac.cput.domain.Customer;
-import za.ac.cput.domain.Van;
 
 import java.time.LocalDate;
 
@@ -10,12 +8,10 @@ public class BookingFactory {
 
     public static Booking createBooking(LocalDate startDate,
                                         LocalDate endDate,
-                                        double totalPrice,
-                                        Van van,
-                                        Customer customer) {
+                                        String licensePlate, // Change to license plate directly
+                                        String customerEmail) {
         // Validate input
-        if (startDate == null || endDate == null ||
-                totalPrice <= 0 || van == null || customer == null) {
+        if (startDate == null || endDate == null || licensePlate == null || customerEmail == null || customerEmail.isEmpty()) {
             throw new IllegalArgumentException("Invalid booking data provided.");
         }
 
@@ -28,9 +24,8 @@ public class BookingFactory {
         return new Booking.Builder()
                 .setStartDate(startDate)
                 .setEndDate(endDate)
-                .setTotalPrice(totalPrice)
-                .setVan(van)
-                .setCustomer(customer)
+                .setLicensePlate(licensePlate) // Use license plate directly
+                .setCustomerEmail(customerEmail) // Use email directly
                 .build();
     }
 }
