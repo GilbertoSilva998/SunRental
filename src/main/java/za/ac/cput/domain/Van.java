@@ -9,31 +9,24 @@ import java.util.Objects;
 @Table(name = "van")
 public class Van implements Serializable {
     @Id
-    @Column(name = "license_plate")
+    @Column(name = "license_plate") // Ensure this matches the column in the database
     private String licensePlate;
 
     private String make;
-
     private String model;
-
     private int year;
-
     private String vin;
-
     private int capacity;
-
     private String fuelType;
-
     private boolean rentalStatus;
-
     private int price;
 
     @Lob
     @Column(length = 100000)
     private byte[] image;
 
-    //Constructor
-    protected Van() {}
+    // Constructor
+    public Van() {}
 
     public Van(Builder builder) {
         this.licensePlate = builder.licensePlate;
@@ -48,10 +41,11 @@ public class Van implements Serializable {
         this.image = builder.image;
     }
 
-    //Getters
+    // Getters
     public String getLicensePlate() {
         return licensePlate;
     }
+
     public String getMake() {
         return make;
     }
@@ -76,7 +70,7 @@ public class Van implements Serializable {
         return fuelType;
     }
 
-    public boolean getRentalStatus() {
+    public boolean isRentalStatus() {
         return rentalStatus;
     }
 
@@ -88,13 +82,16 @@ public class Van implements Serializable {
         return image;
     }
 
-    //Has Code
+    // equals, hashCode, and toString methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Van van = (Van) o;
-        return year == van.year && capacity == van.capacity && rentalStatus == van.rentalStatus && price == van.price && Objects.equals(licensePlate, van.licensePlate) && Objects.equals(make, van.make) && Objects.equals(model, van.model) && Objects.equals(vin, van.vin) && Objects.equals(fuelType, van.fuelType) && Arrays.equals(image, van.image);
+        return year == van.year && capacity == van.capacity && rentalStatus == van.rentalStatus && price == van.price &&
+                Objects.equals(licensePlate, van.licensePlate) && Objects.equals(make, van.make) &&
+                Objects.equals(model, van.model) && Objects.equals(vin, van.vin) &&
+                Objects.equals(fuelType, van.fuelType) && Arrays.equals(image, van.image);
     }
 
     @Override
@@ -103,9 +100,6 @@ public class Van implements Serializable {
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
-
-    //ToString
-
 
     @Override
     public String toString() {
@@ -123,7 +117,7 @@ public class Van implements Serializable {
                 '}';
     }
 
-    //Builder Class
+    // Builder class
     public static class Builder {
         private String licensePlate;
         private String make;
@@ -136,11 +130,11 @@ public class Van implements Serializable {
         private int price;
         private byte[] image;
 
-
         public Builder setLicensePlate(String licensePlate) {
             this.licensePlate = licensePlate;
             return this;
         }
+
         public Builder setMake(String make) {
             this.make = make;
             return this;
@@ -199,9 +193,8 @@ public class Van implements Serializable {
             return this;
         }
 
-        public Van build(){
+        public Van build() {
             return new Van(this);
         }
     }
 }
-
