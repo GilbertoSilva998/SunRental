@@ -10,6 +10,8 @@ public interface IBookingService extends IService<Booking, String>{
 
     @Transactional
 
+    Booking create(Booking booking);
+
     List<Booking> getAll(); // Get all bookings
 
     boolean delete(String bookingID);
