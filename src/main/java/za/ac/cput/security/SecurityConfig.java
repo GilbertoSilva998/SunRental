@@ -31,10 +31,25 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .requestMatchers("/**").permitAll()
+                //Allow access to endpoint without authorization
                 .requestMatchers("/admin/login", "/admin/create").permitAll()
-                .requestMatchers("/van/allVans").permitAll()
+
                 .requestMatchers("/api/bookings/create").permitAll()
-                .requestMatchers("/customers/login", "/customers/create").permitAll() // Corrected the endpoint
+                .requestMatchers("/customers/create",
+                                 "/customers/read/{id}",
+                                 "/customers/allCustomers",
+                                 "/customers/login").permitAll()
+
+                .requestMatchers("/customers/findByEmail").permitAll()
+
+                .requestMatchers("/van/create",
+                                 "/van/read/{licensePlate}",
+                                 "/van/update",
+                                 "/van/deleteById/",
+                                 "/van/allVans",
+                                 "/van/image/{licensePlate}"
+                                    ).permitAll()
                 .anyRequest().authenticated() // Protect all other endpoints
                 .and()
                 .httpBasic(Customizer.withDefaults())
