@@ -20,7 +20,7 @@ public class Customer {
     private String role  = "USER";
 
 
-    protected Customer() {}
+    public Customer() {}
 
     public Customer(Builder builder) {
         this.id = builder.id;

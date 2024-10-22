@@ -11,47 +11,44 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/bookings")
+@CrossOrigin("http://localhost:8081") // Adjust the allowed origin as needed
 public class BookingController {
 
     private final IBookingService bookingService;
 
     @Autowired
-    public BookingController(IBookingService bookingService){
+    public BookingController(IBookingService bookingService) {
         this.bookingService = bookingService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Booking>> getAllBookings() {
-        List<Booking> bookings = bookingService.getAll();
-        return new ResponseEntity<>(bookings, HttpStatus.OK);
-    }
+    @PostMapping("/create")
+    public ResponseEntity<Booking> create(@RequestBody Booking booking) {
+        if (booking == null || booking.getCustomer() == null || booking.getVan() == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Ensure booking, customer, and van are not null
+        }
 
-    @GetMapping("/{bookingID}")
-    public ResponseEntity<Booking> getBookingById(@PathVariable String bookingID) {
-        Booking booking = bookingService.read(bookingID);
-        return booking != null ? ResponseEntity.ok(booking)
-                : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-
-    @PostMapping
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
         try {
             Booking createdBooking = bookingService.create(booking);
             return new ResponseEntity<>(createdBooking, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    @PutMapping("/{bookingID}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable String bookingID, @RequestBody Booking bookingDetails) {
-        Booking existingBooking = bookingService.read(bookingID);
-        if (existingBooking != null) {
-            Booking updatedBooking = bookingService.update(bookingDetails);
-            return new ResponseEntity<>(updatedBooking, HttpStatus.OK);
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Booking>> getAll() {
+        List<Booking> bookings = bookingService.getAll();
+        return new ResponseEntity<>(bookings, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{bookingID}")
+    public ResponseEntity<Void> delete(@PathVariable String bookingID) {
+        boolean isDeleted = bookingService.delete(bookingID);
+        if (isDeleted) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }
