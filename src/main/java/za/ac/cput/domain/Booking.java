@@ -1,38 +1,33 @@
 package za.ac.cput.domain;
 
-
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-
 @Entity
 public class Booking implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingID;
+
     private LocalDate startDate;
     private LocalDate endDate;
-    private double totalPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "license_plate")
-    private Van van;
+    @Column(name = "license_plate", nullable = false)
+    private String licensePlate; // Storing van's license plate directly
 
-    @ManyToOne
-    @JoinColumn
-    private Customer customer;
+    @Column(name = "customer_email", nullable = false)
+    private String customerEmail; // Storing customer email directly
 
     protected Booking() {}
 
     public Booking(Builder builder) {
         this.startDate = builder.startDate;
         this.endDate = builder.endDate;
-        this.totalPrice = builder.totalPrice;
-        this.van = builder.van;
-        this.customer = builder.customer;
+        this.licensePlate = builder.licensePlate;
+        this.customerEmail = builder.customerEmail;
     }
 
     public Long getBookingID() {
@@ -47,62 +42,49 @@ public class Booking implements Serializable {
         return endDate;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public String getLicensePlate() {
+        return licensePlate;
     }
 
-    public Van getVan() {
-        return van;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-
-
-
-    //HasCode
+    // equals, hashCode, and toString methods
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
-        return Double.compare(totalPrice, booking.totalPrice) == 0 && Objects.equals(bookingID, booking.bookingID) && Objects.equals(startDate, booking.startDate) && Objects.equals(endDate, booking.endDate) && Objects.equals(van, booking.van) && Objects.equals(customer, booking.customer);
+        return Objects.equals(bookingID, booking.bookingID) &&
+                Objects.equals(startDate, booking.startDate) &&
+                Objects.equals(endDate, booking.endDate) &&
+                Objects.equals(licensePlate, booking.licensePlate) &&
+                Objects.equals(customerEmail, booking.customerEmail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookingID, startDate, endDate, totalPrice, van, customer);
+        return Objects.hash(bookingID, startDate, endDate, licensePlate, customerEmail);
     }
-
-
 
     @Override
     public String toString() {
         return "Booking{" +
-                "bookingID='" +  bookingID + '\'' +
+                "bookingID=" + bookingID +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", totalPrice=" + totalPrice +
-                ", van=" + van +
-                ", customer=" + customer +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", customerEmail='" + customerEmail + '\'' +
                 '}';
     }
-
-    public void setCustomer(Customer customer) {
-
-    }
-
 
     public static class Builder {
         private LocalDate startDate;
         private LocalDate endDate;
-        private double totalPrice;
-        private Van van;
-        private Customer customer;
-
+        private String licensePlate;
+        private String customerEmail;
 
         public Builder setStartDate(LocalDate startDate) {
             this.startDate = startDate;
@@ -114,32 +96,26 @@ public class Booking implements Serializable {
             return this;
         }
 
-        public Builder setTotalPrice(double totalPrice) {
-            this.totalPrice = totalPrice;
+        public Builder setLicensePlate(String licensePlate) {
+            this.licensePlate = licensePlate;
             return this;
         }
 
-        public Builder setVan(Van van) {
-            this.van = van;
-            return this;
-        }
-
-        public Builder setCustomer(Customer customer) {
-            this.customer = customer;
+        public Builder setCustomerEmail(String customerEmail) {
+            this.customerEmail = customerEmail;
             return this;
         }
 
         public Builder copy(Booking booking) {
             this.startDate = booking.startDate;
             this.endDate = booking.endDate;
-            this.totalPrice = booking.totalPrice;
-            this.van = booking.van;
-            this.customer = booking.customer;
+            this.licensePlate = booking.licensePlate;
+            this.customerEmail = booking.customerEmail;
             return this;
         }
 
-        public Booking build() {return new Booking(this);}
-
+        public Booking build() {
+            return new Booking(this);
+        }
     }
-
 }
