@@ -11,6 +11,7 @@ import za.ac.cput.repository.BookingRepository;
 import za.ac.cput.repository.CustomerRepository;
 import za.ac.cput.repository.VanRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,4 +81,10 @@ public class BookingService implements IBookingService {
             return false;
         }
     }
+
+    @Override
+    public List<Booking> findOverlappingBookings(String licensePlate, LocalDate startDate, LocalDate endDate) {
+        return List.of();
+    }
 }
+//

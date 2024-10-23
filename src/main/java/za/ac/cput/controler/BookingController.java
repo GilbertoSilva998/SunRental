@@ -36,15 +36,12 @@ public class BookingController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Van not found
             }
 
-            // Ensure the necessary booking details are set correctly
             String customerEmail = bookingRequest.getCustomerEmail();
             LocalDate startDate = bookingRequest.getStartDate();
             LocalDate endDate = bookingRequest.getEndDate();
 
-            if (customerEmail == null || startDate == null || endDate == null) {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Ensure required fields are present
-            }
 
+//
             // Pass required fields to the booking service for creation
             Booking createdBooking = bookingService.create(bookingRequest);
             return new ResponseEntity<>(createdBooking, HttpStatus.CREATED);

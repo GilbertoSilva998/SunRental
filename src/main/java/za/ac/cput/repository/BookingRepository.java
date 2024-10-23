@@ -19,3 +19,4 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
         return findByLicensePlateAndStartDateLessThanEqualAndEndDateGreaterThanEqual(licensePlate, endDate, startDate);
     }
 }
+//
