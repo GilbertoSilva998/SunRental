@@ -10,7 +10,7 @@ public class BookingFactory {
                                         LocalDate endDate,
                                         String licensePlate, // Change to license plate directly
                                         String customerEmail) {
-        // Validate input
+        // Validate
         if (startDate == null || endDate == null || licensePlate == null || customerEmail == null || customerEmail.isEmpty()) {
             throw new IllegalArgumentException("Invalid booking data provided.");
         }

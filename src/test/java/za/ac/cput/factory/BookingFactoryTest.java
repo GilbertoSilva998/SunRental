@@ -28,3 +28,4 @@ public class BookingFactoryTest {
                 BookingFactory.createBooking(LocalDate.now(), LocalDate.now().minusDays(1), "CA12345", "customer@example.com"));
     }
 }
+//
